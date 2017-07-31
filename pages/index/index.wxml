@@ -1,0 +1,72 @@
+<!--index.wxml-->
+<view class="container">
+
+  <!--轮播图  -->
+  <swiper class="ad_wrap" autoplay indicator-dots circular interval="{{interval}}">
+    <swiper-item wx:for="{{ad_imgs}}" wx:key="*this" wx:for-item="ad_img">
+      <image src="{{ad_img}}" class="ad_img" mode="aspectFill"></image>
+    </swiper-item>
+  </swiper>
+  <!--/轮播图  -->
+
+  <!--便民信息-->
+  <view class="page">
+    <block wx:if="{{infos.length}}">
+      <view class="infos_head">——— 最新信息 ———</view>
+      <view class="infos_item" wx:for="{{infos}}" wx:key="id" wx:for-item="info">
+        <view class="infos_item_head">
+          <image src="{{info.store_cover}}" class="infos_item_head_img" mode="aspectFill"></image>
+          <view class="infos_item_head_wrap">
+            <view class="infos_item_head_name">{{info.store_name}}</view>
+            <view class="infos_item_time">{{info.createtime}}</view>
+          </view>
+        </view>
+        <text class="infos_item_message">{{info.content}}</text>
+        <view class="infos_item_pic_list">
+          <image src="{{item}}" mode="aspectFill" class="infos_item_pic" wx:for="{{info.img}}" wx:key="*this" bindtap="preImg" data-imggup="{{info.img}}" data-url="{{item}}"></image>
+        </view>
+        <view class="infos_item_function">
+          <view class="infos_item_function_p" catchtap="good" data-id="{{info.id}}" data-index="{{index}}">
+            <image src="{{info.isLike == 1?'/images/icon/like_r.png':'/images/icon/like.png'}}" mode="widthFix" class="infos_item_function_p_icon"></image>
+            <view>点赞</view>
+          </view>
+          <view class="infos_item_function_p" catchtap="goToComment" data-moment_id="{{info.id}}" data-comment_id="0">
+            <image src="/images/icon/comment.png" mode="widthFix" class="infos_item_function_p_icon"></image>
+            <view>评论</view>
+          </view>
+        </view>
+        <view class="infos_item_comments {{info.comments.length?'':'no_padding'}}">
+          <view class="infos_item_love_people" wx:if="{{info.likes.length > 0}}">
+            <view class="infos_item_love_people_name">
+              <image src="/images/icon/like_r.png" mode="widthFix" class="infos_item_function_p_icon infos_item_function_p_icon_r"></image>
+              <block wx:for="{{info.likes}}" wx:key="*this">
+                <block wx:if="{{index < 7}}">{{item}}、</block>
+                <block wx:elif="{{index == 7}}"><text class="infos_likes_more">...等{{info.likes.length}}人赞</text></block>
+              </block>
+            </view>
+          </view>
+          <view class="infos_item_comments_list" wx:if="{{info.comments.length > 0}}">
+            <view class="infos_item_comments_item_newest" wx:if="{{info.comments.length > 0}}">最新热评</view>
+            <view class="infos_item_comments_item" wx:for="{{info.comments}}" hover-class="push_class" hover-stay-time="150" wx:key="id" data-moment_id="{{info.id}}" data-comment_id="{{item.id}}" catchtap="{{userInfo.nickName == item.name? '': 'goToComment'}}">
+              <block wx:if="{{index < info.limit}}">
+                <view class="infos_item_comments_item_name">{{item.name}}：<text class="infos_item_comments_item_content">{{item.content}}</text></view>
+              </block>
+            </view>
+            <block wx:if="{{info.comments.length > 5}}">
+              <view class="infos_item_comments_item_comment_btns">
+                <view class="infos_item_comments_item_more" catchtap="getMoreComment" data-index="{{index}}">查看更多</view>
+                <view class="infos_item_comments_item_more_hide" wx:if="{{info.limit > 5}}" catchtap="hideMoreComment" data-index="{{index}}">收起</view>
+              </view>
+            </block>
+          </view>
+        </view>
+      </view>
+      <view class="infos_bottom" hidden="{{!tips_flag[0]}}">加载中</view>
+      <view class="infos_bottom" hidden="{{!tips_all[0]}}">——— 已展示全部动态 ———</view>
+    </block>
+    <block wx:else>
+      <view class="infos_bottom">———— 暂无信息 ————</view>
+    </block>
+  </view>
+  <!--/ 便民信息-->
+</view>

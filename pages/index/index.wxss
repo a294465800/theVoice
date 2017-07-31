@@ -1,0 +1,195 @@
+/**index.wxss**/
+
+/*
+  轮播广告区域  
+*/
+
+.swiper_wrap {
+  width: 100%;
+}
+
+.ad_wrap {
+  width: 100%;
+  height: 400rpx;
+}
+
+.ad_img {
+  width: 100%;
+  height: 100%;
+}
+
+/*
+  便民信息
+*/
+
+.infos_item {
+  padding: 20rpx 30rpx 20rpx;
+  border-bottom: 1px solid #ececec;
+}
+
+.infos_item_head, .infos_item_pic_list, .nav_bar, .infos_item_function,
+.infos_item_function_p, .infos_item_love_people,
+.infos_item_comments_item_comment_btns {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  color: #999;
+}
+
+.infos_head, .infos_bottom {
+  width: 100%;
+  font-size: 30rpx;
+  text-align: center;
+  color: #999;
+  margin-top: 20rpx;
+}
+
+.infos_bottom {
+  margin-top: 50rpx;
+}
+
+.infos_item_head_wrap {
+  flex: 1;
+}
+
+.infos_item_head {
+  margin: 10rpx 0;
+  justify-content: flex-start;
+}
+
+.infos_item_head_img {
+  width: 120rpx;
+  height: 120rpx;
+  border-radius: 50%;
+}
+
+.infos_item_head_name {
+  font-size: 18px;
+  margin: 10rpx 0 10rpx 30rpx;
+  color: #333;
+  word-break: break-all;
+  word-wrap: break-word;
+}
+
+.infos_item_time {
+  font-size: 14px;
+  margin-left: 30rpx;
+  color: #999;
+}
+
+.infos_item_pic_list {
+  justify-content: flex-start;
+  flex-wrap: wrap;
+}
+
+.infos_item_pic {
+  width: 200rpx;
+  height: 250rpx;
+  margin: 0 26rpx 30rpx 0;
+  border: 2rpx solid #ececec;
+}
+
+.infos_item_message {
+  margin-bottom: 30rpx;
+  font-size: 16px;
+  text-indent: 2em;
+  display: block;
+  word-wrap: break-word;
+  word-break: break-all;
+}
+
+.infos_item_function {
+  justify-content: flex-end;
+  background-color: #fff;
+}
+
+.infos_item_function_p_icon {
+  width: 15px;
+}
+
+.infos_item_function_p_icon_r {
+  margin-right: 10rpx;
+}
+
+.infos_item_function_p {
+  justify-content: space-between;
+  min-width: 110rpx;
+  margin-left: 30rpx;
+}
+
+.infos_item_function_p view {
+  color: #999;
+  font-size: 14px;
+}
+
+.infos_item_comments {
+  background-color: #eee;
+  margin: 20rpx 0;
+  padding: 6rpx 0 10rpx;
+}
+
+.infos_item_love_people_name {
+  margin-left: 10rpx;
+  font-size: 14px;
+  color: #666;
+  flex: 1;
+}
+
+.infos_item_love_people {
+  position: relative;
+  padding: 10rpx 10rpx 10rpx 30rpx;
+  border-bottom: 2rpx solid #ccc;
+}
+
+.infos_item_love_people::after {
+  content: '';
+  height: 0;
+  border-width: 20rpx 30rpx;
+  border-style: solid;
+  border-color: transparent transparent #eee transparent;
+  position: absolute;
+  top: -38rpx;
+  left: 6rpx;
+}
+
+.infos_item_comments_list {
+  padding: 10rpx 30rpx 0;
+}
+
+.infos_item_comments_item_name, .infos_item_comments_item_content,
+.infos_item_comments_item_more, .infos_item_comments_item_newest,
+.infos_item_comments_item_more_hide {
+  padding: 6rpx;
+  font-size: 14px;
+}
+
+.infos_item_comments_item_name {
+  color: #ff963d;
+}
+
+.infos_item_comments_item_comment_btns {
+  justify-content: space-between;
+}
+
+.infos_item_comments_item_more, .infos_item_comments_item_more_hide {
+  color: #1d53bf;
+}
+
+.infos_item_comments_item_newest {
+  text-align: left;
+  color: #999;
+}
+
+.infos_likes_more {
+  font-size: 13px;
+  color: #666;
+}
+
+.infos_item_comments_item_content {
+  color: #000;
+}
+
+.infos_item_comments_item_name, .infos_item_comments_item_content {
+  word-break: break-all;
+  word-wrap: break-word;
+}

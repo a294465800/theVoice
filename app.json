@@ -1,0 +1,35 @@
+{
+  "pages": [
+    "pages/index/index",
+    "pages/logs/logs"
+  ],
+  "window": {
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#1ccca9",
+    "navigationBarTitleText": "区广告小程序",
+    "navigationBarTextStyle": "#fff"
+  },
+  "tabBar": {
+    "list": [
+      {
+        "pagePath": "pages/index/index",
+        "text": "便民信息",
+        "iconPath": "/images/tab/ad.png",
+        "selectedIconPath": "/images/tab/ad_g.png"
+      },
+      {
+        "pagePath": "pages/index/index",
+        "text": "商铺推广",
+        "iconPath": "/images/tab/promotion.png",
+        "selectedIconPath": "/images/tab/promotion_g.png"
+      },
+      {
+        "pagePath": "pages/index/index",
+        "text": "我的",
+        "iconPath": "/images/tab/mine.png",
+        "selectedIconPath": "/images/tab/mine.png"
+      }
+    ],
+    "selectedColor": "#1ccca9"
+  }
+}
