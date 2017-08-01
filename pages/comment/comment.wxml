@@ -1,0 +1,17 @@
+<!--dynamic_comment.wxml-->
+<view class="container">
+  <!--拉起评论-->
+  <view class="comment_part">
+
+    <!--评论输入-->
+    <textarea auto-focus class="comment_inut" placeholder="请评价" maxlength="200" bindinput="getComments" />
+    <view class="comment_left">你还可以输入{{comments_left}}/200</view>
+    <!--/评论输入-->
+
+    <!--提交-->
+    <view class="comment_submit" bindtap="commentPost">提交</view>
+    <!--/提交-->
+
+  </view>
+  <!--/拉起评论-->
+</view>

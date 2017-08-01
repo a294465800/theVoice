@@ -58,7 +58,7 @@ Page({
             content: '我就是不讲'
           }
         ],
-        likes: ['小红','小黑','小白','小猪','小崽'],
+        likes: ['小红', '小黑', '小白', '小猪', '小崽'],
         limit: 5
       },
       {
@@ -122,4 +122,13 @@ Page({
       [temp]: 5
     })
   },
+
+  //评论
+  goToComment(e) {
+    const that = this
+    const id = e.currentTarget.dataset.id
+    wx.navigateTo({
+      url: '/pages/comment/comment?id=' + id,
+    })
+  }
 })
