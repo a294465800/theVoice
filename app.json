@@ -1,6 +1,7 @@
 {
   "pages": [
     "pages/index/index",
+    "pages/mine/mine",
     "pages/logs/logs"
   ],
   "window": {
@@ -24,10 +25,10 @@
         "selectedIconPath": "/images/tab/promotion_g.png"
       },
       {
-        "pagePath": "pages/index/index",
+        "pagePath": "pages/mine/mine",
         "text": "我的",
         "iconPath": "/images/tab/mine.png",
-        "selectedIconPath": "/images/tab/mine.png"
+        "selectedIconPath": "/images/tab/mine_g.png"
       }
     ],
     "selectedColor": "#1ccca9"

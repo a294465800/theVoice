@@ -1,0 +1,17 @@
+<!--mine.wxml-->
+<view class="container">
+
+  <!--登录  -->
+  <view class="mine_login" hover-class="push_class" hover-stay-time="150">
+    <image src="/images/mine/login.png" mode="aspectFill" class="mine_login_img"></image>
+    <view class="mine_longin_tip">请登录</view>
+  </view>
+  <!--/登录  -->
+
+  <!--我发布的  -->
+  <view class="mine_funtion_part" hover-class="push_class" hover-stay-time="150">
+    <image src="/images/mine/mine_publish.png" mode="widthFix" class="mine_funtion_part_icon"></image>
+    <view class="mine_funtion_part_titile">我发布的</view>
+  </view>
+  <!--/我发布的  -->
+</view>
