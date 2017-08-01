@@ -193,3 +193,15 @@
   word-break: break-all;
   word-wrap: break-word;
 }
+
+/*
+  发布
+*/
+
+.infos_publish {
+  width: 60px;
+  position: fixed;
+  right: 70rpx;
+  bottom: 50rpx;
+  z-index: 1;
+}

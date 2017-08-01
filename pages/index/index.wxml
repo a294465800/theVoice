@@ -1,5 +1,5 @@
 <!--index.wxml-->
-<view class="container">
+<view class="container" bindtouchstart="touchStart" bindtouchend="touchEnd">
 
   <!--轮播图  -->
   <swiper class="ad_wrap" autoplay indicator-dots circular interval="{{interval}}">
@@ -13,7 +13,7 @@
   <view class="page">
     <block wx:if="{{infos.length}}">
       <view class="infos_head">——— 最新信息 ———</view>
-      <view class="infos_item" wx:for="{{infos}}" wx:key="id" wx:for-item="info">
+      <view class="infos_item" wx:for="{{infos}}" wx:key="id" wx:for-item="info" wx:for-index="info_index">
         <view class="infos_item_head">
           <image src="{{info.store_cover}}" class="infos_item_head_img" mode="aspectFill"></image>
           <view class="infos_item_head_wrap">
@@ -23,10 +23,10 @@
         </view>
         <text class="infos_item_message">{{info.content}}</text>
         <view class="infos_item_pic_list">
-          <image src="{{item}}" mode="aspectFill" class="infos_item_pic" wx:for="{{info.img}}" wx:key="*this" bindtap="preImg" data-imggup="{{info.img}}" data-url="{{item}}"></image>
+          <image src="{{item}}" mode="aspectFill" class="infos_item_pic" wx:for="{{info.img}}" wx:key="*this" catchtap="preImage" data-index="{{index}}" data-father_index="{{info_index}}" data-url="{{item}}"></image>
         </view>
         <view class="infos_item_function">
-          <view class="infos_item_function_p" catchtap="good" data-id="{{info.id}}" data-index="{{index}}">
+          <view class="infos_item_function_p" catchtap="good" data-id="{{info.id}}" data-index="{{info_index}}">
             <image src="{{info.isLike == 1?'/images/icon/like_r.png':'/images/icon/like.png'}}" mode="widthFix" class="infos_item_function_p_icon"></image>
             <view>点赞</view>
           </view>
@@ -54,7 +54,7 @@
             </view>
             <block wx:if="{{info.comments.length > 5}}">
               <view class="infos_item_comments_item_comment_btns">
-                <view class="infos_item_comments_item_more" catchtap="getMoreComment" data-index="{{index}}">查看更多</view>
+                <view class="infos_item_comments_item_more" catchtap="getMoreComment" data-index="{{info_index}}">查看更多</view>
                 <view class="infos_item_comments_item_more_hide" wx:if="{{info.limit > 5}}" catchtap="hideMoreComment" data-index="{{index}}">收起</view>
               </view>
             </block>
@@ -69,4 +69,8 @@
     </block>
   </view>
   <!--/ 便民信息-->
+
+  <!--发布  -->
+  <image class="infos_publish" mode="widthFix" src="/images/icon/publish.png" animation="{{animationPublish}}" catchtap="goToPublish"></image>
+  <!--/发布  -->
 </view>

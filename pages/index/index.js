@@ -1,11 +1,15 @@
 //index.js
 //获取应用实例
 const app = getApp()
+let startY = 0, endY = 0
 Page({
   data: {
 
     userInfo: {},
     interval: 4000,
+
+    //发布动画
+    animationPublish: {},
 
     //模拟数据
     ad_imgs: [
@@ -129,6 +133,48 @@ Page({
     const id = e.currentTarget.dataset.id
     wx.navigateTo({
       url: '/pages/comment/comment?id=' + id,
+    })
+  },
+
+  //获取触摸初始位置
+  touchStart(e) {
+    startY = e.changedTouches[0].clientY
+  },
+
+  //获取结束位置
+  touchEnd(e) {
+    endY = e.changedTouches[0].clientY
+    let diff = endY - startY
+    let animation = wx.createAnimation({
+      duration: 500,
+      timingFunction: 'ease'
+    })
+    if (diff > 0) {
+      animation.bottom('20rpx').step()
+    } else {
+      animation.bottom('-70px').step()
+    }
+    this.setData({
+      animationPublish: animation.export()
+    })
+  },
+
+  //  图片预览
+  preImage(e) {
+    const that = this
+    let index = e.currentTarget.dataset.index
+    let father_index = e.currentTarget.dataset.father_index
+    let url = e.currentTarget.dataset.url
+    wx.previewImage({
+      current: url,
+      urls: that.data.infos[father_index].img,
+    })
+  },
+
+  //发布评论
+  goToPublish() {
+    wx.navigateTo({
+      url: '/pages/publish/publish',
     })
   }
 })
