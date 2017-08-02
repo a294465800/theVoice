@@ -1,8 +1,8 @@
 {
   "pages": [
     "pages/index/index",
-    "pages/promotion/promotion",
     "pages/publish/publish",
+    "pages/promotion/promotion",
     "pages/single_info/single_info",
     "pages/mine/mine",
     "pages/comment/comment",

@@ -1,21 +1,30 @@
 <!--publish.wxml-->
 <view class="container">
   <!--输入框  -->
-  <textarea class="publish_area" auto-focus maxlength="200" placeholder="编辑信息..." />
+  <textarea class="publish_area" auto-focus maxlength="200" placeholder="编辑信息..." bindinput="getTextarea" />
   <!--/输入框  -->
+
+    <view class="comment_left">你还可以输入{{comments_left}}/200</view>
 
   <!--图片部分  -->
   <view class="publish_imgs">
-    <image src="http://yuxuange.com/show/img/20/12L260C3964P-1PK.jpg" mode="aspectFill" class="publish_img"></image>
-    <image src="http://yuxuange.com/show/img/20/12L260C3964P-1PK.jpg" mode="aspectFill" class="publish_img"></image>
-    <image src="/images/icon/add_img.png" mode="aspectFill" class="publish_img"></image>
+    <block wx:if="{{urls.length}}">
+      <image src="{{item}}" wx:for="{{urls}}" wx:key="*this" mode="aspectFill" class="publish_img">
+        <icon type="clear" color="#1ccca9" class="img_cancel" size="20" catchtap="cancelImg" data-url="{{item}}" />
+      </image>
+    </block>
+    <block wx:if="{{urls.length < 8}}">
+      <image src="/images/icon/add_img.png" mode="aspectFill" class="publish_img" catchtap="addImg"></image>
+    </block>
+    <block wx:else>
+    </block>
   </view>
   <!--/图片部分  -->
 
   <!--提醒  -->
   <view class="publish_warning">
     <view class="publish_warning_title">
-      <image src="/images/icon/remind.png" mode="widthFix" class="publish_warning_icon"></image>
+      <image src="/images/icon/remind.png" mode="aspectFit" class="publish_warning_icon"></image>
       <view class="publish_warning_name">提醒：</view>
     </view>
     <view class="publish_warning_content">
@@ -26,8 +35,8 @@
   <!--/提醒  -->
 
   <!--匿名  -->
-  <view class="publish_nobody">
-    <image src="{{nobody.no}}" class="publish_nobody_img" mode="widthFix"></image>
+  <view class="publish_nobody" catchtap="nobodyFunc">
+    <image src="{{message.nobody?nobody.ok:nobody.no}}" class="publish_nobody_img" mode="widthFix"></image>
     <view class="publish_nobody_titie">匿名发布</view>
   </view>
   <!--/匿名  -->

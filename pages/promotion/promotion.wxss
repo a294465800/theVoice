@@ -164,7 +164,7 @@
 .infos_publish {
   width: 60px;
   position: fixed;
-  right: 70rpx;
+  right: 50rpx;
   bottom: 50rpx;
   z-index: 1;
 }
