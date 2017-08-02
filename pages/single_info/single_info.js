@@ -5,12 +5,16 @@ Page({
 
     //点赞和收藏图标
     like: {
-      ok: '/images/icon/like.png',
-      no: '/images/icon/like_r.png'
+      'ok': '/images/icon/like.png',
+      'no': '/images/icon/like_r.png'
     },
     collect: {
-      ok: '/images/icon/collect_c.png',
-      no: '/images/icon/collect.png'
+      'ok': '/images/icon/collect_c.png',
+      'no': '/images/icon/collect.png'
+    },
+    love: {
+      'ok': '/images/icon/good_g.png',
+      'no': '/images/icon/good.png'
     },
 
     //提示
@@ -36,8 +40,8 @@ Page({
       ],
       store_cover: '/images/icon/nobody.png',
       isLike: 1,
-      likes: ['小红', '小黑', '小白', '小猪', '小崽'],
-      limit: 5
+      like: 111,
+      collect: 1
     },
 
     hot_comments: [
@@ -47,7 +51,8 @@ Page({
         content: '不知道哇，很厉害的样子！',
         img: '/images/icon/nobody.png',
         time: '07-11',
-        like: 11
+        like: 11,
+        isLike: 1
       },
       {
         id: 2,
@@ -55,7 +60,8 @@ Page({
         content: '我就是不讲',
         img: 'http://imgtu.5011.net/uploads/content/20170328/8293501490691071.jpg',
         time: '07-31',
-        like: 110
+        like: 110,
+        isLike: 0
       },
       {
         id: 3,
@@ -63,7 +69,8 @@ Page({
         content: '不知道哇，很厉害的样子！',
         img: 'http://rs3.sinahk.net/cap/3/2016/07/04/d/da3874dc60af05621f2dcc48d1ea2a61.jpg',
         time: '07-21',
-        like: 11
+        like: 11,
+        isLike: 1
       }
     ],
 
@@ -74,7 +81,8 @@ Page({
         content: '哇，真的吗~',
         img: 'http://img.sc115.com/tx/ka/cpic/1509hlnfxn5uib1.jpg',
         time: '07-11',
-        like: 121
+        like: 121,
+        isLike: 1
       },
       {
         id: 2,
@@ -82,7 +90,8 @@ Page({
         content: '我就是不讲',
         img: '/images/icon/nobody.png',
         time: '07-05',
-        like: 31
+        like: 31,
+        isLike: 0
       },
       {
         id: 3,
@@ -90,7 +99,8 @@ Page({
         content: '人家把你当朋友，你却想。。。！',
         img: 'http://p3.wmpic.me/article/2015/03/18/1426649933_LmkapquY.jpeg',
         time: '07-11',
-        like: 2
+        like: 2,
+        isLike: 0
       },
       {
         id: 4,
@@ -98,7 +108,8 @@ Page({
         content: '我就是不讲',
         img: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRqRBdRwXnU2uKiNhp--Ji1mj6S3m3ycPU-_eFTheZuGXOGJ-7h',
         time: '07-11',
-        like: 32
+        like: 32,
+        isLike: 0
       },
       {
         id: 5,
@@ -106,7 +117,8 @@ Page({
         content: '谢谢咯~',
         img: '/images/icon/nobody.png',
         time: '07-21',
-        like: 5
+        like: 5,
+        isLike: 0
       },
       {
         id: 6,
@@ -114,7 +126,8 @@ Page({
         content: '哈哈哈哈',
         img: 'http://img.171u.com/image/1605/1610360843167.jpeg',
         time: '08-01',
-        like: 11
+        like: 11,
+        isLike: 0
       }
     ],
   },
@@ -127,6 +140,7 @@ Page({
     })
   },
 
+  //分享
   onShareAppMessage() {
     return {
       title: '区广告',
@@ -134,6 +148,69 @@ Page({
     }
   },
 
+  //点赞评论
+  loveFunc(arr, id, index) {
+    const that = this
+    let tmp1 = arr + '[' + index + '].isLike'
+    let tmp2 = arr + '[' + index + '].like'
+
+    if (that.data[arr][index].isLike) {
+      that.setData({
+        [tmp1]: 0,
+        [tmp2]: that.data[arr][index].like - 1
+      })
+    } else {
+      that.setData({
+        [tmp1]: 1,
+        [tmp2]: that.data[arr][index].like + 1
+      })
+    }
+  },
+
+  hotLove(e) {
+    // const that = this
+    const id = e.currentTarget.dataset.id
+    const index = e.currentTarget.dataset.index
+    this.loveFunc('hot_comments', id, index)
+  },
+
+  commentsLike(e) {
+    const id = e.currentTarget.dataset.id
+    const index = e.currentTarget.dataset.index
+    this.loveFunc('comments', id, index)
+  },
+
+  //广告点赞
+  AdLove(e) {
+    const that = this
+    const id = e.currentTarget.dataset.id
+    let tmp = 'info.isLike'
+    if (that.data.info.isLike) {
+      that.setData({
+        [tmp]: 0
+      })
+    } else {
+      that.setData({
+        [tmp]: 1
+      })
+    }
+  },
+
+  //收藏
+  adCollect(e) {
+    const that = this
+    const id = e.currentTarget.dataset.id
+    let tmp = 'info.collect'
+    if (that.data.info.collect) {
+      that.setData({
+        [tmp]: 0
+      })
+    } else {
+      that.setData({
+        [tmp]: 1
+      })
+    }
+  },
 
   //评论
   goToComment(e) {
@@ -144,10 +221,11 @@ Page({
     })
   },
 
+
   //触底刷新
   toBottom() {
     const that = this
-    if (that.data.flag){
+    if (that.data.flag) {
       return false
     }
     let tmp = that.data.comments

@@ -5,6 +5,11 @@ Page({
 
   data: {
 
+    like: {
+      'ok': '/images/icon/like_r.png',
+      'no': '/images/icon/like.png'
+    },
+
     //发布动画
     animationPublish: {},
 
@@ -20,13 +25,12 @@ Page({
         createtime: '2017-05-22',
         content: '小程序的广告都打到附近的小程序中来~',
         img: [
-          'http://www.onead.com.tw/wp-content/uploads/2017/06/shutterstock_291472427-2.jpg',
-          'http://yuxuange.com/show/img/20/12L260C3964P-1PK.jpg',
-          'https://img.technews.tw/wp-content/uploads/2015/09/Gmail_Transparent_Wide-590x303.jpg'
+          'http://www.onead.com.tw/wp-content/uploads/2017/06/shutterstock_291472427-2.jpg'
         ],
         store_cover: '/images/icon/nobody.png',
         likes: 22,
-        comment: 12
+        comment: 12,
+        top: 1
       },
       {
         id: 1,
@@ -40,16 +44,36 @@ Page({
         ],
         store_cover: '/images/icon/nobody.png',
         likes: 10,
-        comment: 323
+        comment: 323,
+        top: 0
       }
     ]
   },
 
 
   onLoad: function (options) {
-  
+
   },
 
+  //点赞
+  likePunch(e) {
+    const that = this
+    const id = e.currentTarget.dataset.id
+    const index = e.currentTarget.dataset.index
+    let tmp1 = 'infos[' + index + '].isLike'
+    let tmp2 = 'infos[' + index + '].likes'
+    if (that.data.infos[index].isLike) {
+      that.setData({
+        [tmp1]: 0,
+        [tmp2]: that.data.infos[index].likes - 1
+      })
+    } else {
+      that.setData({
+        [tmp1]: 1,
+        [tmp2]: that.data.infos[index].likes + 1
+      })
+    }
+  },
 
   //单条内容跳转
   goToSingle(e) {

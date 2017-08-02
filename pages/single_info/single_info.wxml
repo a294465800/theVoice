@@ -36,8 +36,8 @@
                     <view class="infos_comment_replay">{{hot.content}}</view>
                     <view class="infos_comment_function">
                       <view class="infos_comment_time">{{hot.time}}</view>
-                      <view class="infos_comment_like">
-                        <image src="/images/icon/good.png" mode="aspectFit" class="infos_comment_like_img"></image>
+                      <view class="infos_comment_like" catchtap="hotLove" data-id="{{hot.id}}" data-index="{{hot_index}}">
+                        <image src="{{hot.isLike?love.ok:love.no}}" mode="aspectFit" class="infos_comment_like_img"></image>
                         <view class="infos_comment_like_num">{{hot.like}}</view>
                       </view>
                     </view>
@@ -60,8 +60,8 @@
                     <view class="infos_comment_replay">{{comment.content}}</view>
                     <view class="infos_comment_function">
                       <view class="infos_comment_time">{{comment.time}}</view>
-                      <view class="infos_comment_like">
-                        <image src="/images/icon/good.png" mode="aspectFit" class="infos_comment_like_img"></image>
+                      <view class="infos_comment_like" catchtap="commentsLike" data-id="{{comment.id}}" data-index="{{comment_index}}">
+                        <image src="{{comment.isLike?love.ok:love.no}}" mode="aspectFit" class="infos_comment_like_img"></image>
                         <view class="infos_comment_like_num">{{comment.like}}</view>
                       </view>
                     </view>
@@ -84,12 +84,12 @@
 
   <!--操作栏  -->
   <view class="function">
-    <view class="function_item">
-      <image src="{{like.ok}}" mode="aspectFit" class="function_item_img"></image>
+    <view class="function_item" catchtap="AdLove" data-id="{{info.id}}">
+      <image src="{{info.isLike?like.ok:like.no}}" mode="aspectFit" class="function_item_img"></image>
       <view class="function_item_name">喜欢</view>
     </view>
-    <view class="function_item">
-      <image src="{{collect.ok}}" mode="aspectFit" class="function_item_img"></image>
+    <view class="function_item" catchtap="adCollect" data-id="{{info.id}}">
+      <image src="{{info.collect?collect.ok:collect.no}}" mode="aspectFit" class="function_item_img"></image>
       <view class="function_item_name">收藏</view>
     </view>
     <view class="function_item" catchtap="goToComment" data-id="{{info.id}}">
