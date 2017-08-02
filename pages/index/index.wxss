@@ -171,6 +171,7 @@
 
 .infos_publish {
   width: 60px;
+  height: 60px;
   position: fixed;
   right: 50rpx;
   bottom: 50rpx;

@@ -121,11 +121,6 @@
   -webkit-box-orient: vertical;
 }
 
-/* .infos_item_info {
-  color: #666;
-  font-size: 14px;
-} */
-
 .infos_item_info, .infos_item_info_part {
   display: flex;
   align-items: center;
@@ -163,6 +158,7 @@
 
 .infos_publish {
   width: 60px;
+  height: 60px;
   position: fixed;
   right: 50rpx;
   bottom: 50rpx;

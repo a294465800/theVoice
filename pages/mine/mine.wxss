@@ -37,11 +37,12 @@
 
 .mine_funtion_part {
   padding: 24rpx 30rpx;
-  margin-bottom: 30rpx;
+  margin-bottom: 2rpx;
 }
 
 .mine_funtion_part_icon {
   width: 18px;
+  height: 18px;
 }
 
 .mine_funtion_part_titile {
