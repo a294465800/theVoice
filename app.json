@@ -1,10 +1,12 @@
 {
   "pages": [
     "pages/index/index",
+    "pages/single_info/single_info",
     "pages/mine/mine",
     "pages/comment/comment",
-    "pages/logs/logs",
-    "pages/publish/publish"
+    "pages/publish/publish",
+    "pages/promotion/promotion",
+    "pages/logs/logs"
   ],
   "window": {
     "backgroundTextStyle": "light",
@@ -21,7 +23,7 @@
         "selectedIconPath": "/images/tab/ad_g.png"
       },
       {
-        "pagePath": "pages/index/index",
+        "pagePath": "pages/promotion/promotion",
         "text": "商铺推广",
         "iconPath": "/images/tab/promotion.png",
         "selectedIconPath": "/images/tab/promotion_g.png"

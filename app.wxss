@@ -18,6 +18,14 @@ view {
   padding: 0 !important;
 }
 
+.tips {
+  width: 100%;
+  font-size: 15px;
+  text-align: center;
+  color: #999;
+  margin-top: 20rpx;
+}
+
 /*隐藏、显示*/
 
 .hide {

@@ -1,12 +1,9 @@
-//index.js
-//获取应用实例
+// promotion.js
 const app = getApp()
 let startY = 0, endY = 0
 Page({
-  data: {
 
-    userInfo: {},
-    interval: 4000,
+  data: {
 
     //发布动画
     animationPublish: {},
@@ -16,11 +13,6 @@ Page({
     tips_all: false,
 
     //模拟数据
-    ad_imgs: [
-      'https://www.sosomarketing.com/wp-content/uploads/2016/05/YOUTUBE%E5%BD%B1%E7%89%87%E5%BB%A3%E5%91%8A.jpg',
-      'https://i.ytimg.com/vi/xWyZsm17n5M/maxresdefault.jpg'
-    ],
-
     infos: [
       {
         id: 1,
@@ -53,9 +45,11 @@ Page({
     ]
   },
 
-  onLoad() {
 
+  onLoad: function (options) {
+  
   },
+
 
   //单条内容跳转
   goToSingle(e) {
@@ -115,4 +109,5 @@ Page({
       tips_flag: true,
     })
   }
+
 })

@@ -1,13 +1,5 @@
-<!--index.wxml-->
+<!--promotion.wxml-->
 <view class="container" bindtouchstart="touchStart" bindtouchend="touchEnd">
-
-  <!--轮播图  -->
-  <swiper class="ad_wrap" autoplay indicator-dots circular interval="{{interval}}">
-    <swiper-item wx:for="{{ad_imgs}}" wx:key="*this" wx:for-item="ad_img">
-      <image src="{{ad_img}}" class="ad_img" mode="aspectFill"></image>
-    </swiper-item>
-  </swiper>
-  <!--/轮播图  -->
 
   <!--便民信息-->
   <view class="page">

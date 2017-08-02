@@ -1,0 +1,101 @@
+<!--single_info.wxml-->
+<view class="container">
+
+  <view class="scroll_wrap">
+    <view class="scroll">
+      <scroll-view class="scroll_part" scroll-y bindscrolltolower="toBottom">
+
+        <!--便民信息-->
+        <view class="infos_item">
+          <view class="infos_item_head">
+            <image src="{{info.store_cover}}" class="infos_item_head_img" mode="aspectFill"></image>
+            <view class="infos_item_head_wrap">
+              <view class="infos_item_head_name">{{info.store_name}}</view>
+            </view>
+          </view>
+          <text class="infos_item_message">{{info.content}}</text>
+          <view class="infos_item_pic_list">
+            <image src="{{item}}" mode="aspectFill" class="infos_item_pic" wx:for="{{info.img}}" wx:key="*this" catchtap="preImage" data-index="{{index}}" data-father_index="{{info_index}}" data-url="{{item}}"></image>
+          </view>
+          <view class="infos_item_time">发布于 {{info.createtime}}</view>
+        </view>
+        <!--/ 便民信息-->
+
+        <!--评论  -->
+        <view class="infos_comment_part">
+
+          <!--热门评论  -->
+          <block wx:if="{{hot_comments.length}}">
+            <view class="infos_comment_hot">
+              <view class="infos_comment_title">热门评论({{hot_comments.length}})</view>
+              <view class="infos_comment_list">
+                <view class="infos_comment_item" wx:for="{{hot_comments}}" wx:for-item="hot" wx:key="id" wx:for-index="hot_index">
+                  <image src="{{hot.img}}" class="infos_comment_img" mode="aspectFill"></image>
+                  <view class="infos_comment_content">
+                    <view class="infos_comment_name">{{hot.name}}</view>
+                    <view class="infos_comment_replay">{{hot.content}}</view>
+                    <view class="infos_comment_function">
+                      <view class="infos_comment_time">{{hot.time}}</view>
+                      <view class="infos_comment_like">
+                        <image src="/images/icon/good.png" mode="aspectFit" class="infos_comment_like_img"></image>
+                        <view class="infos_comment_like_num">{{hot.like}}</view>
+                      </view>
+                    </view>
+                  </view>
+                </view>
+              </view>
+            </view>
+          </block>
+          <!--/热门评论  -->
+
+          <!--所有评论  -->
+          <block wx:if="{{comments.length}}">
+            <view class="infos_comment_all">
+              <view class="infos_comment_title">评论({{comments.length}})</view>
+              <view class="infos_comment_list">
+                <view class="infos_comment_item" wx:for="{{comments}}" wx:for-item="comment" wx:for-index="comment_index" wx:key="id">
+                  <image src="{{comment.img}}" class="infos_comment_img" mode="aspectFill"></image>
+                  <view class="infos_comment_content">
+                    <view class="infos_comment_name">{{comment.name}}</view>
+                    <view class="infos_comment_replay">{{comment.content}}</view>
+                    <view class="infos_comment_function">
+                      <view class="infos_comment_time">{{comment.time}}</view>
+                      <view class="infos_comment_like">
+                        <image src="/images/icon/good.png" mode="aspectFit" class="infos_comment_like_img"></image>
+                        <view class="infos_comment_like_num">{{comment.like}}</view>
+                      </view>
+                    </view>
+                  </view>
+                </view>
+              </view>
+              <view class="infos_bottom" hidden="{{!tips_all}}">——— 没有更多内容了 ———</view>
+            </view>
+          </block>
+          <block wx:else>
+            <view class="tips">暂没有评论</view>
+          </block>
+          <!--/热门评论  -->
+
+        </view>
+        <!--/评论  -->
+      </scroll-view>
+    </view>
+  </view>
+
+  <!--操作栏  -->
+  <view class="function">
+    <view class="function_item">
+      <image src="{{like.ok}}" mode="aspectFit" class="function_item_img"></image>
+      <view class="function_item_name">喜欢</view>
+    </view>
+    <view class="function_item">
+      <image src="{{collect.ok}}" mode="aspectFit" class="function_item_img"></image>
+      <view class="function_item_name">收藏</view>
+    </view>
+    <view class="function_item" catchtap="goToComment" data-id="{{info.id}}">
+      <image src="/images/icon/comment.png" mode="aspectFit" class="function_item_img"></image>
+      <view class="function_item_name">评论</view>
+    </view>
+  </view>
+  <!--/操作栏  -->
+</view>

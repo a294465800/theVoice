@@ -1,26 +1,7 @@
-/**index.wxss**/
-
+/* promotion.wxss */
 .container {
   background-color: #ececec;
   padding-bottom: 30rpx;
-}
-
-/*
-  轮播广告区域  
-*/
-
-.swiper_wrap {
-  width: 100%;
-}
-
-.ad_wrap {
-  width: 100%;
-  height: 400rpx;
-}
-
-.ad_img {
-  width: 100%;
-  height: 100%;
 }
 
 /*
