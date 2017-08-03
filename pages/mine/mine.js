@@ -21,5 +21,12 @@ Page({
     wx.navigateTo({
       url: '/pages/my_collect/my_collect',
     })
+  },
+
+  //关于我们
+  goToUs() {
+    wx.navigateTo({
+      url: '/pages/about/about',
+    })
   }
 })

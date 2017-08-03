@@ -23,7 +23,8 @@ Page({
     //模拟数据
     ad_imgs: [
       'https://www.sosomarketing.com/wp-content/uploads/2016/05/YOUTUBE%E5%BD%B1%E7%89%87%E5%BB%A3%E5%91%8A.jpg',
-      'http://www.damndigital.com/wp-content/uploads/2013/03/damndigital_advertising-creative_2013-03_01.jpg'
+      'http://www.damndigital.com/wp-content/uploads/2013/03/damndigital_advertising-creative_2013-03_01.jpg',
+      '/images/ad.png'
     ],
 
     infos: [

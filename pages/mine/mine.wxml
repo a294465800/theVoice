@@ -21,4 +21,18 @@
     <view class="mine_funtion_part_titile">我的收藏</view>
   </view>
   <!--/我的收藏  -->
+
+  <!--关于我们  -->
+  <view class="mine_funtion_part" hover-class="push_class" hover-stay-time="150" catchtap="goToUs">
+    <image src="/images/mine/about.png" mode="aspectFit" class="mine_funtion_part_icon"></image>
+    <view class="mine_funtion_part_titile">关于我们</view>
+  </view>
+  <!--/关于我们  -->
+
+  <!--合作联系  -->
+  <button open-type="contact" class="mine_funtion_part mine_button" hover-class="push_class" hover-stay-time="150">
+    <image src="/images/mine/about.png" mode="aspectFit" class="mine_funtion_part_icon"></image>
+    <view class="mine_funtion_part_titile">合作联系</view>
+  </button>
+  <!--/合作联系  -->
 </view>
