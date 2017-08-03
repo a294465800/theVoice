@@ -8,7 +8,7 @@
 }
 
 .infos_item {
-  padding-bottom: 30rpx;
+  padding-bottom: 80rpx;
   background-color: #fff;
 }
 
@@ -202,7 +202,7 @@
   justify-content: flex-end;
   align-items: center;
   background-color: #fff;
-  padding: 14rpx 30rpx;
+  padding: 20rpx 30rpx;
 }
 
 .function_item {
@@ -220,4 +220,5 @@
 .function_item_name {
   font-size: 14px;
   color: #999;
+  margin-top: 10rpx;
 }

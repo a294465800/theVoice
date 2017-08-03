@@ -1,0 +1,24 @@
+<!--my_collect.wxml-->
+<view class="container">
+  <block wx:if="{{collects.length}}">
+    <view class="collect_item" wx:for="{{collects}}" wx:for-item="collect" wx:key="id">
+      <view class="collect_item_head">
+        <image src="{{collect.img}}" mode="aspectFill" class="collect_item_head_img"></image>
+        <view class="collect_item_head_name">{{collect.name}}</view>
+      </view>
+      <view class="collect_item_content">{{collect.content}}</view>
+      <view class="collect_item_info">
+        <block wx:if="{{collect.likes}}">
+          <text>{{collect.likes}} 喜欢 · </text>
+        </block>
+        <block wx:if="{{collect.comments}}">
+          <text>{{collect.comments}} 评论 · </text>
+        </block>
+        <text>查看</text>
+      </view>
+    </view>
+  </block>
+  <block wx:else>
+    <view class="tips">暂无收藏</view>
+  </block>
+</view>

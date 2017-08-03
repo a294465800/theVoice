@@ -1,0 +1,20 @@
+<!--my_publish.wxml-->
+<view class="container">
+  <block wx:if="{{publishs.length}}">
+    <view class="my_publish_item" wx:for="{{publishs}}" wx:for-item="publish" wx:key="id">
+      <view class="my_publish_item_content">{{publish.content}}</view>
+      <view class="my_publish_item_info">
+        <block wx:if="{{publish.like}}">
+          <text>{{publish.like}} 喜欢 · </text>
+        </block>
+        <block wx:if="{{publish.comments}}">
+          <text>{{publish.comments}} 评论 · </text>
+        </block>
+        <text>{{publish.time}}</text>
+      </view>
+    </view>
+  </block>
+  <block wx:else>
+    <view class="tips">暂无内容</view>
+  </block>
+</view>

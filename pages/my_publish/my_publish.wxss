@@ -1,0 +1,36 @@
+/* my_publish.wxss */
+
+.container {
+  background-color: #ececec;
+  padding-top: 20rpx;
+  min-height: 100%;
+  padding-bottom: 30rpx;
+}
+
+.my_publish_item {
+  width: 100%;
+  padding: 30rpx;
+  background-color: #fff;
+  border-top: 2rpx solid #eee;
+  border-bottom: 2rpx solid #eee;
+  box-shadow: 4rpx 4rpx 2rpx #ccc;
+  margin-bottom: 30rpx;
+}
+
+.my_publish_item_content {
+  color: #000;
+  font-size: 14px;
+  word-wrap: break-word;
+  word-break: break-all;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  margin-bottom: 20rpx;
+}
+
+.my_publish_item_info text {
+  color: #999;
+  font-size: 14px;
+}

@@ -35,7 +35,7 @@
           <block wx:else>
           </block>
         </view>
-        <!-- <view class="infos_item_info">{{info.likes}} 赞同 · {{info.comment}} 评论</view> -->
+        <!-- <view class="infos_item_info">{{info.likes}} 喜欢 · {{info.comment}} 评论</view> -->
         <view class="infos_item_info">
           <view class="infos_item_info_part border_right" hover-class="push_class" hover-stay-time="150" catchtap="goToSingle" data-id="{{info.id}}">
             <image src="/images/icon/comment.png" mode="aspectFit" class="infos_item_info_part_img"></image>

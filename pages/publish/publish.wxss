@@ -25,6 +25,7 @@
   margin-top: 10rpx;
   font-size: 15px;
   padding-right: 30rpx;
+  margin-bottom: 30rpx;
 }
 
 /*
@@ -44,7 +45,7 @@
   width: 180rpx;
   height: 180rpx;
   border: 2rpx solid #ececec;
-  margin: 0 15rpx 10rpx;
+  margin: 0 15rpx 30rpx;
   position: relative;
   overflow: unset;
 }
@@ -75,6 +76,7 @@
   display: flex;
   flex-direction: row;
   align-items: center;
+  margin-bottom: 20rpx;
 }
 
 .publish_warning_name {

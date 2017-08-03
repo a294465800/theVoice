@@ -13,7 +13,7 @@
         <icon type="clear" color="#1ccca9" class="img_cancel" size="20" catchtap="cancelImg" data-url="{{item}}" />
       </image>
     </block>
-    <block wx:if="{{urls.length < 8}}">
+    <block wx:if="{{urls.length < 9}}">
       <image src="/images/icon/add_img.png" mode="aspectFill" class="publish_img" catchtap="addImg"></image>
     </block>
     <block wx:else>
