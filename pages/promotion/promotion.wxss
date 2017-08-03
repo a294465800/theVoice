@@ -14,7 +14,6 @@
 }
 
 .infos_item {
-  /* padding: 20rpx 30rpx 20rpx; */
   background-color: #fff;
   box-shadow: 4rpx 4rpx 2rpx #ccc;
   margin-bottom: 30rpx;
@@ -101,7 +100,7 @@
 
 .infos_item_pic {
   width: 200rpx;
-  height: 250rpx;
+  height: 200rpx;
   margin: 0 26rpx 30rpx 0;
   border: 2rpx solid #ececec;
 }

@@ -9,7 +9,6 @@
 
 .infos_item {
   padding-bottom: 30rpx;
-  /* border-bottom: 2rpx solid #ececec; */
   background-color: #fff;
 }
 
@@ -93,8 +92,8 @@
 }
 
 .infos_item_pic {
-  width: 200rpx;
-  height: 250rpx;
+  width: 100%;
+  /* height: 250rpx; */
   margin: 0 26rpx 30rpx 0;
   border: 2rpx solid #ececec;
 }
@@ -115,7 +114,6 @@
 
 .infos_comment_part {
   padding: 20rpx 0 30rpx;
-  /* background-color: #ececec; */
   width: 100%;
 }
 

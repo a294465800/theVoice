@@ -15,7 +15,7 @@
           </view>
           <text class="infos_item_message">{{info.content}}</text>
           <view class="infos_item_pic_list">
-            <image src="{{item}}" mode="aspectFill" class="infos_item_pic" wx:for="{{info.img}}" wx:key="*this" catchtap="preImage" data-index="{{index}}" data-father_index="{{info_index}}" data-url="{{item}}"></image>
+            <image src="{{item}}" mode="aspectFill" class="infos_item_pic" wx:for="{{info.img}}" wx:key="*this" catchtap="preImage" data-index="{{index}}" data-url="{{item}}"></image>
           </view>
           <view class="infos_item_time">发布于 {{info.createtime}}</view>
         </view>

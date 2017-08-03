@@ -180,6 +180,16 @@ Page({
     this.loveFunc('comments', id, index)
   },
 
+  //  图片预览
+  preImage(e) {
+    const that = this
+    let url = e.currentTarget.dataset.url
+    wx.previewImage({
+      current: url,
+      urls: that.data.info.img,
+    })
+  },
+
   //广告点赞
   AdLove(e) {
     const that = this
