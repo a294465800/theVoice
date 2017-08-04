@@ -3,8 +3,8 @@
 
   <!--轮播图  -->
   <swiper class="ad_wrap" autoplay indicator-dots circular interval="{{interval}}">
-    <swiper-item wx:for="{{ad_imgs}}" wx:key="*this" wx:for-item="ad_img">
-      <image src="{{ad_img}}" class="ad_img" mode="aspectFill"></image>
+    <swiper-item wx:for="{{ad_imgs}}" wx:key="id" wx:for-item="ad_img">
+      <image src="{{ad_img.url}}" class="ad_img" mode="aspectFill" catchtap="goToAd" data-link="{{ad_img.link}}"></image>
     </swiper-item>
   </swiper>
   <!--/轮播图  -->
@@ -15,35 +15,34 @@
       <view class="infos_item" wx:for="{{infos}}" wx:key="id" wx:for-item="info" wx:for-index="info_index">
         <view hover-class="push_class" hover-stay-time="150" catchtap="goToSingle" data-id="{{info.id}}">
           <view class="infos_item_head">
-            <image src="{{info.store_cover}}" class="infos_item_head_img" mode="aspectFill"></image>
+            <image src="{{info.anonymous == 1 ? nobody : info.avatar}}" class="infos_item_head_img" mode="aspectFill"></image>
             <view class="infos_item_head_wrap">
-              <view class="infos_item_head_name">{{info.store_name}}</view>
-              <view class="infos_item_time">{{info.createtime}}</view>
+              <view class="infos_item_head_name">{{info.anonymous == 1 ? '匿名' : info.userName}}</view>
+              <view class="infos_item_time">{{info.created_at}}</view>
             </view>
           </view>
           <text class="infos_item_message">{{info.content}}</text>
-          <block wx:if="{{info.img.length == 1}}">
+          <block wx:if="{{info.images.length == 1}}">
             <view class="infos_item_pic_alone">
-              <image src="{{item}}" mode="aspectFill" class="infos_item_pic_one" wx:for="{{info.img}}" wx:key="*this" catchtap="preImage" data-index="{{index}}" data-father_index="{{info_index}}" data-url="{{item}}"></image>
+              <image src="{{item.url}}" mode="aspectFill" class="infos_item_pic_one" wx:for="{{info.images}}" wx:key="id" catchtap="preImage" data-index="{{index}}" data-father_index="{{info_index}}" data-url="{{item.url}}"></image>
             </view>
           </block>
-          <block wx:elif="{{info.img.length > 1}}">
+          <block wx:elif="{{info.images.length > 1}}">
             <view class="infos_item_pic_list">
-              <image src="{{item}}" mode="aspectFill" class="infos_item_pic" wx:for="{{info.img}}" wx:key="*this" catchtap="preImage" data-index="{{index}}" data-father_index="{{info_index}}" data-url="{{item}}"></image>
+              <image src="{{item.url}}" mode="aspectFill" class="infos_item_pic" wx:for="{{info.images}}" wx:key="id" catchtap="preImage" data-index="{{index}}" data-father_index="{{info_index}}" data-url="{{item.url}}"></image>
             </view>
           </block>
           <block wx:else>
           </block>
         </view>
-        <!-- <view class="infos_item_info">{{info.likes}} 喜欢 · {{info.comment}} 评论</view> -->
         <view class="infos_item_info">
           <view class="infos_item_info_part border_right" hover-class="push_class" hover-stay-time="150" catchtap="goToSingle" data-id="{{info.id}}">
             <image src="/images/icon/comment.png" mode="aspectFit" class="infos_item_info_part_img"></image>
-            <view class="infos_item_info_part_text">{{info.comment}} 评论</view>
+            <view class="infos_item_info_part_text">{{info.commentCount}} 评论</view>
           </view>
           <view class="infos_item_info_part" hover-class="push_class" hover-stay-time="150" catchtap="likePunch" data-id="{{info.id}}" data-index="{{info_index}}">
             <image src="{{info.isLike?like.ok:like.no}}" mode="aspectFit" class="infos_item_info_part_img"></image>
-            <view class="infos_item_info_part_text">{{info.likes}} 喜欢</view>
+            <view class="infos_item_info_part_text">{{info.likeCount}} 喜欢</view>
           </view>
         </view>
       </view>

@@ -10,6 +10,8 @@ Page({
       'no': '/images/icon/like.png'
     },
 
+    nobody: '/images/icon/nobody.png',
+
     //发布动画
     animationPublish: {},
 
@@ -17,8 +19,11 @@ Page({
     tips_flag: false,
     tips_all: false,
 
+    //接口数据
+    infos: null,
+
     //模拟数据
-    infos: [
+    info: [
       {
         id: 1,
         store_name: '匿名游客',
@@ -51,8 +56,27 @@ Page({
   },
 
 
-  onLoad: function (options) {
+  onLoad(options) {
+    this.firstRequest()
+  },
 
+  //初次请求封装
+  firstRequest() {
+    const that = this
+    wx.request({
+      url: app.globalData.host + 'moments',
+      data: {
+        type: 2,
+        _token: app.globalData._token
+      },
+      success: res => {
+        if (200 == res.data.code) {
+          that.setData({
+            infos: res.data.data
+          })
+        }
+      }
+    })
   },
 
   //点赞
@@ -122,7 +146,7 @@ Page({
   //发布评论
   goToPublish() {
     wx.navigateTo({
-      url: '/pages/publish/publish',
+      url: '/pages/publish/publish?type=2',
     })
   },
 

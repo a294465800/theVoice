@@ -1,0 +1,5 @@
+/* ad_page.wxss */
+
+.ad {
+  width: 100%;
+}

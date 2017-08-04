@@ -1,29 +1,171 @@
 //app.js
 App({
-  onLaunch: function() {
-    //调用API从本地缓存中获取数据
-    var logs = wx.getStorageSync('logs') || []
-    logs.unshift(Date.now())
-    wx.setStorageSync('logs', logs)
-  },
-
-  getUserInfo: function(cb) {
-    var that = this
-    if (this.globalData.userInfo) {
-      typeof cb == "function" && cb(this.globalData.userInfo)
-    } else {
-      //调用登录接口
-      wx.getUserInfo({
-        withCredentials: false,
-        success: function(res) {
-          that.globalData.userInfo = res.userInfo
-          typeof cb == "function" && cb(that.globalData.userInfo)
-        }
-      })
-    }
+  onLaunch: function () {
   },
 
   globalData: {
-    userInfo: null
-  }
+    userInfo: null,
+    host: 'http://119.23.202.220/api/v1/',
+    app_id: 'wxdd05e7ae4cf78bea',
+    _token: ''
+  },
+
+  getToken(cb){
+    const that = this
+    wx.request({
+      url: that.globalData.host + 'token',
+      data: {
+        app_id: that.globalData.app_id
+      },
+      success: res => {
+        that.globalData._token = res.data.data
+        typeof cb == "function" && cb()
+      }
+    })
+  },
+
+  //获取用户设置
+  getSetting(cb) {
+    let that = this
+    wx.getSystemInfo({
+      success: res => {
+        if (res.SDKVersion.replace(/\./g, '') < 125) {
+          wx.showModal({
+            title: '提示',
+            content: '当前微信版本过低，部分功能可能无法使用，请升级到最新微信版本。',
+            showCancel: false
+          })
+        }
+      }
+    })
+    if (that.globalData.userInfo) {
+      typeof cb == "function" && cb(that.globalData.userInfo)
+      return false
+    }
+    wx.getSetting({
+      success: setting => {
+        if (setting.authSetting["scope.userInfo"]) {
+          wx.showLoading({
+            title: '登录中',
+          })
+          //调用登录接口
+          wx.login({
+            withCredentials: true,
+            success: rs => {
+              wx.getUserInfo({
+                success: res => {
+                  that.globalData.userInfo = res.userInfo
+                  wx.request({
+                    url: that.globalData.host + 'login',
+                    method: 'POST',
+                    header: that.globalData.header,
+                    data: {
+                      code: rs.code,
+                      encryptedData: res.encryptedData,
+                      iv: res.iv,
+                      app_id: that.globalData.app_id,
+                      _token: that.globalData._token
+                    },
+                    success: e => {
+                      wx.hideLoading()
+                      if (200 != e.data.code) {
+                        wx.showToast({
+                          title: '登录失败',
+                        })
+                      } else {
+                        wx.showToast({
+                          title: '登录成功',
+                        })
+                      }
+                    }
+                  })
+                }
+              })
+            }
+          })
+        } else if (setting.authSetting["scope.userInfo"] === false) {
+          wx.hideLoading()
+          wx.showModal({
+            title: '提示',
+            content: '您之前拒绝了授权，现在是否开启？',
+            success: res => {
+              if (res.confirm) {
+                wx.openSetting({
+                  success: rs => {
+                    if (rs.authSetting["scope.userInfo"]) {
+                      that.getSetting(cb)
+                    }
+                  }
+                })
+              } else {
+                typeof cb == "function" && cb(that.globalData.userInfo)
+              }
+            }
+          })
+        } else {
+          wx.hideLoading()
+          wx.getUserInfo({
+            success: res => {
+              that.getSetting(cb)
+            },
+            fail: () => {
+              typeof cb == "function" && cb(that.globalData.userInfo)
+            }
+          })
+        }
+      }
+    })
+  },
+
+  //如果已授权，直接登录，否则，不做操作
+  nowLogin(cb) {
+    const that = this
+    wx.getSetting({
+      success: setting => {
+        if (setting.authSetting["scope.userInfo"]) {
+          wx.showLoading({
+            title: '登录中',
+            mask: true
+          })
+          wx.login({
+            withCredentials: true,
+            success: rs => {
+              that.globalData.userInfo = rs.userInfo
+              wx.getUserInfo({
+                success: res => {
+                  wx.request({
+                    url: that.globalData.host + 'login',
+                    method: 'POST',
+                    header: that.globalData.header,
+                    data: {
+                      code: rs.code,
+                      encryptedData: res.encryptedData,
+                      iv: res.iv,
+                      app_id: that.globalData.app_id,
+                      _token: that.globalData._token
+                    },
+                    success: e => {
+                      wx.hideLoading()
+                      if (200 != e.data.code) {
+                        wx.showToast({
+                          title: '登录失败',
+                        })
+                      } else {
+                        wx.showToast({
+                          title: '登录成功',
+                        })
+                      }
+                      typeof cb == "function" && cb(that.globalData.userInfo)
+                    }
+                  })
+                }
+              })
+            }
+          })
+        } else {
+          typeof cb == "function" && cb(that.globalData.userInfo)
+        }
+      }
+    })
+  },
 })

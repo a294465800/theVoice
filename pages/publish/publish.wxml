@@ -4,7 +4,16 @@
   <textarea class="publish_area" auto-focus maxlength="200" placeholder="编辑信息..." bindinput="getTextarea" />
   <!--/输入框  -->
 
+  <view class="publish_function">
+    <!--匿名  -->
+    <view class="publish_nobody" catchtap="nobodyFunc">
+      <image src="{{message.anonymous?nobody.ok:nobody.no}}" class="publish_nobody_img" mode="widthFix"></image>
+      <view class="publish_nobody_titie">匿名发布</view>
+    </view>
+    <!--/匿名  -->
     <view class="comment_left">你还可以输入{{comments_left}}/200</view>
+  </view>
+
 
   <!--图片部分  -->
   <view class="publish_imgs">
@@ -33,13 +42,6 @@
     </view>
   </view>
   <!--/提醒  -->
-
-  <!--匿名  -->
-  <view class="publish_nobody" catchtap="nobodyFunc">
-    <image src="{{message.nobody?nobody.ok:nobody.no}}" class="publish_nobody_img" mode="widthFix"></image>
-    <view class="publish_nobody_titie">匿名发布</view>
-  </view>
-  <!--/匿名  -->
 
   <!--发布  -->
   <view class="publish" catchtap="publish">发布</view>

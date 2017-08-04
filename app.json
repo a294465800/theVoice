@@ -1,15 +1,16 @@
 {
   "pages": [
     "pages/index/index",
+    "pages/publish/publish",
     "pages/mine/mine",
     "pages/about/about",
     "pages/my_collect/my_collect",
     "pages/my_publish/my_publish",
-    "pages/publish/publish",
     "pages/promotion/promotion",
     "pages/single_info/single_info",
     "pages/comment/comment",
-    "pages/logs/logs"
+    "pages/logs/logs",
+    "pages/ad_page/ad_page"
   ],
   "window": {
     "backgroundTextStyle": "light",

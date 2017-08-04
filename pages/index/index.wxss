@@ -3,6 +3,7 @@
 .container {
   background-color: #ececec;
   padding-bottom: 30rpx;
+  min-height: 100%;
 }
 
 /*
@@ -29,10 +30,10 @@
 
 .page {
   padding-top: 20rpx;
+  flex: 1;
 }
 
 .infos_item {
-  /* padding: 20rpx 30rpx 20rpx; */
   background-color: #fff;
   box-shadow: 4rpx 4rpx 2rpx #ccc;
   margin-bottom: 30rpx;

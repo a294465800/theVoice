@@ -2,6 +2,7 @@
 <view class="container">
   <block wx:if="{{collects.length}}">
     <view class="collect_item" wx:for="{{collects}}" wx:for-item="collect" wx:key="id">
+      <view class="cancel_collect" catchtap="cancelCollect">取消收藏</view>
       <view class="collect_item_head">
         <image src="{{collect.img}}" mode="aspectFill" class="collect_item_head_img"></image>
         <view class="collect_item_head_name">{{collect.name}}</view>

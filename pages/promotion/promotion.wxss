@@ -3,6 +3,7 @@
 .container {
   background-color: #ececec;
   padding-bottom: 30rpx;
+  min-height: 100%;
 }
 
 /*

@@ -21,10 +21,13 @@
 
 .comment_left {
   color: #1ccca9;
-  text-align: right;
-  margin-top: 10rpx;
   font-size: 15px;
   padding-right: 30rpx;
+}
+
+.publish_function {
+  display: flex;
+  justify-content: space-between;
   margin-bottom: 30rpx;
 }
 

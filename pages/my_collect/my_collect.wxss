@@ -15,6 +15,15 @@
   border-bottom: 2rpx solid #eee;
   box-shadow: 4rpx 4rpx 2rpx #ccc;
   margin-bottom: 30rpx;
+  position: relative;
+}
+
+.cancel_collect {
+  position: absolute;
+  top: 10rpx;
+  right: 10rpx;
+  color: red;
+  font-size: 14px;
 }
 
 .collect_item_head {
