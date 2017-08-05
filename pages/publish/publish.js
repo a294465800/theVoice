@@ -118,16 +118,19 @@ Page({
   },
 
   //发布
-  publish() {
+  publish(e) {
     const that = this
-    if (!that.data.message.content) {
+    
+    if (!e.detail.value.content) {
       wx.showModal({
         title: '提示',
         content: '请输入内容',
         showCancel: false
       })
     } else {
-
+      // that.setData({
+      //   'message.formID': e.formId
+      // })
       wx.request({
         url: app.globalData.host + 'moment/add',
         method: 'POST',
@@ -135,7 +138,6 @@ Page({
         success: res => {
           if (200 == res.data.code) {
             if(2 == that.data.message.type){
-              console.log(res.data.data)
               wx.request({
                 url: app.globalData.host + 'pay',
                 method: 'POST',
