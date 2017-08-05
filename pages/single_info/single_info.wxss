@@ -83,6 +83,7 @@
   padding-right: 30rpx;
   color: #999;
   text-align: right;
+  margin-top: 30rpx;
 }
 
 .infos_item_pic_list {
@@ -93,7 +94,6 @@
 
 .infos_item_pic {
   width: 100%;
-  /* height: 250rpx; */
   margin: 0 26rpx 30rpx 0;
   border: 2rpx solid #ececec;
 }

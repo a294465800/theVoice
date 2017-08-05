@@ -55,6 +55,13 @@ Page({
     })
   },
 
+  //审核中
+  goToChecking() {
+    wx.navigateTo({
+      url: '/pages/checking/checking',
+    })
+  },
+
   //我的收藏
   goToMyCollect() {
     wx.navigateTo({

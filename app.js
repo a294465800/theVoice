@@ -6,7 +6,7 @@ App({
   globalData: {
     userInfo: null,
     host: 'http://119.23.202.220/api/v1/',
-    app_id: 'wxdd05e7ae4cf78bea',
+    app_id: 'wxfec807d3f372360b',
     _token: ''
   },
 

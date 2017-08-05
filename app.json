@@ -1,6 +1,7 @@
 {
   "pages": [
     "pages/index/index",
+    "pages/checking/checking",
     "pages/publish/publish",
     "pages/mine/mine",
     "pages/about/about",
@@ -9,8 +10,8 @@
     "pages/promotion/promotion",
     "pages/single_info/single_info",
     "pages/comment/comment",
-    "pages/logs/logs",
-    "pages/ad_page/ad_page"
+    "pages/ad_page/ad_page",
+    "pages/logs/logs"
   ],
   "window": {
     "backgroundTextStyle": "light",
