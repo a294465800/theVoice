@@ -44,6 +44,13 @@ Page({
     })
   },
 
+  onShow() {
+    const that = this
+    if (that.data.info_id) {
+      that.firstRequset(that.data.info_id)
+    }
+  },
+
   //初次请求
   firstRequset(id) {
     const that = this

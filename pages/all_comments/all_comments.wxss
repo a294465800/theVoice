@@ -3,6 +3,7 @@
 .container {
   min-height: 100%;
   background-color: #ececec;
+  padding-bottom: 150rpx;
 }
 
 /*  
@@ -34,6 +35,8 @@
   font-size: 14px;
   font-weight: 600;
   color: #000;
+  word-break: break-all;
+  word-wrap: break-word;
 }
 
 .infos_comment_replay {
@@ -74,4 +77,53 @@
   font-size: 14px;
   padding: 30rpx;
   font-weight: 600;
+  text-align: center;
+}
+
+.all_comments_item {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: 30rpx;
+  padding-bottom: 0;
+  background-color: #fff;
+}
+
+.all_comments_item_content {
+  border-bottom: 2rpx solid #ccc;
+}
+
+.all_comments_item:last-child .all_comments_item_content {
+  border-bottom: 0;
+}
+
+.all_comments_item_replay {
+  color: #999;
+  word-break: break-all;
+  word-wrap: break-word;
+}
+
+/*  
+  回复当前
+*/
+.replay_current {
+  width: 100%;
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  padding: 10rpx 30rpx;
+  border-top: 2rpx solid #ccc;
+  background-color: #fff;
+}
+
+.replay_current_content {
+  width: 100%;
+  border-radius: 50rpx;
+  background-color: #eee;
+  padding: 10rpx 30rpx;
+  color: #666;
+}
+
+.replay_push {
+  color: #000;
 }

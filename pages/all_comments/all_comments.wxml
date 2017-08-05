@@ -3,15 +3,15 @@
 
   <!--顶部评论  -->
   <view class="infos_comment_item">
-    <image src="{{comment.avatar}}" class="infos_comment_img" mode="aspectFill"></image>
+    <image src="{{top_comment.avatar}}" class="infos_comment_img" mode="aspectFill"></image>
     <view class="infos_comment_content">
-      <view class="infos_comment_name">{{comment.userName}}</view>
-      <view class="infos_comment_replay">{{comment.content}}</view>
+      <view class="infos_comment_name">{{top_comment.userName}}</view>
+      <view class="infos_comment_replay">{{top_comment.content}}</view>
       <view class="infos_comment_function">
-        <view class="infos_comment_time" catchtap="goToAllComments">{{comment.updated_at}}</view>
-        <view class="infos_comment_like" catchtap="commentsLike" data-id="{{comment.id}}" data-index="{{comment_index}}">
-          <image src="{{comment.isLike?love.ok:love.no}}" mode="aspectFit" class="infos_comment_like_img"></image>
-          <view class="infos_comment_like_num">{{comment.like}}</view>
+        <view class="infos_comment_time" catchtap="goToAllComments">{{top_comment.updated_at}}</view>
+        <view class="infos_comment_like" catchtap="commentsLike" data-id="{{top_comment.id}}" data-index="{{comment_index}}">
+          <image src="{{top_comment.isLike?love.ok:love.no}}" mode="aspectFit" class="infos_comment_like_img"></image>
+          <view class="infos_comment_like_num">{{top_comment.like}}</view>
         </view>
       </view>
     </view>
@@ -19,6 +19,36 @@
   <!--/顶部评论  -->
 
   <!--对话详情  -->
-  <view class="infos_comment_title">对话</view>
+  <view class="infos_comment_title">全部回复</view>
+  <view class="all_comments_list">
+    <view class="all_comments_item" wx:for="{{comments}}" wx:for-item="comment">
+      <image src="{{comment.avatar}}" class="infos_comment_img" mode="aspectFill"></image>
+      <view class="infos_comment_content all_comments_item_content">
+        <view class="infos_comment_name">{{comment.userName}}</view>
+        <block wx:if="{{comment.isReplay}}">
+          <view class="infos_comment_replay" hover-class="replay_push" catchtap="replayComment" data-id="{{comment.id}}"><text class="all_comments_item_replay">回复{{comment.target}}：</text>{{comment.content}}</view>
+        </block>
+        <block wx:else>
+          <view class="infos_comment_replay" hover-class="replay_push" catchtap="replayComment" data-id="{{comment.id}}">{{comment.content}}</view>
+        </block>
+        <view class="infos_comment_function">
+          <view class="infos_comment_time" catchtap="goToAllComments">{{comment.updated_at}}</view>
+          <view class="infos_comment_like" catchtap="commentsLike" data-id="{{comment.id}}" data-index="{{comment_index}}">
+            <image src="{{comment.isLike?love.ok:love.no}}" mode="aspectFit" class="infos_comment_like_img"></image>
+            <view class="infos_comment_like_num">{{comment.like}}</view>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+  <block wx:if="{{close}}">
+    <view class="tips">没有更多内容</view>
+  </block>
   <!--/对话详情  -->
+
+  <!--回复当前  -->
+  <view class="replay_current" data-id="{{top_comment.id}}" catchtap="replayCurrentComment">
+    <view class="replay_current_content">回复{{top_comment.userName}}：</view>
+  </view>
+  <!--/回复当前  -->
 </view>

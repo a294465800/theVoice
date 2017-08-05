@@ -1,7 +1,7 @@
 {
   "pages": [
-    "pages/all_comments/all_comments",
     "pages/index/index",
+    "pages/all_comments/all_comments",
     "pages/checking/checking",
     "pages/publish/publish",
     "pages/mine/mine",

@@ -90,16 +90,27 @@ Page({
     const id = e.currentTarget.dataset.id
     const index = e.currentTarget.dataset.index
     let tmp1 = 'infos[' + index + '].isLike'
-    let tmp2 = 'infos[' + index + '].likes'
+    let tmp2 = 'infos[' + index + '].likeCount'
+
+    wx.request({
+      url: app.globalData.host + 'moment/like/' + id,
+      method: 'POST',
+      data: {
+        _token: app.globalData._token,
+      },
+      success: res => {
+
+      }
+    })
     if (that.data.infos[index].isLike) {
       that.setData({
         [tmp1]: 0,
-        [tmp2]: that.data.infos[index].likes - 1
+        [tmp2]: that.data.infos[index].likeCount - 1
       })
     } else {
       that.setData({
         [tmp1]: 1,
-        [tmp2]: that.data.infos[index].likes + 1
+        [tmp2]: that.data.infos[index].likeCount + 1
       })
     }
   },
