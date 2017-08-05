@@ -138,10 +138,12 @@ Page({
         success: res => {
           if (200 == res.data.code) {
             if(2 == that.data.message.type){
+              let tmp_data = res.data.data
+              tmp_data._token = app.globalData._token
               wx.request({
                 url: app.globalData.host + 'pay',
                 method: 'POST',
-                data: res.data.data,
+                data: tmp_data,
                 success: rs => {
                   wx.requestPayment({
                     timeStamp: rs.data.data.timeStamp,

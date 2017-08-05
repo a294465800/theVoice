@@ -1,36 +1,99 @@
 // checking.js
+const app = getApp()
 Page({
 
   data: {
 
-    //模拟数据
-    publishs: [
-      {
-        id: 1,
-        content: '大二的时候，天气很差，不知道给说些啥。',
-        like: 2,
-        comments: 0,
-        time: '10天前'
-      },
-      {
-        id: 2,
-        content: '黑客可能盗不了你手机里的内容，但可以使用ss7信令漏洞强制对你手机账户进行劫持，拦截你的一切通话和短信，强行开通国际漫游，拨打高额吸费电话。另外，现在很多山寨老人机虽然表面上什么功能都没有，但是还是会盗取你的通讯录等资料，偷跑流量。',
-        like: 12,
-        comments: 22,
-        time: '1个月前'
-      },
-      {
-        id: 3,
-        content: '想上天~',
-        like: 0,
-        comment: 0,
-        time: '2小时前'
-      }
-    ]
+    page: 1,
+    flag: false,
+    close: false,
+
+    //接口数据
+    publishs: null,
   },
 
-  onLoad: function (options) {
-  
+  onLoad(options) {
+    const that = this
+    that.firstRequest(1, data => {
+      that.setData({
+        publishs: data
+      })
+    })
   },
+
+  //初次请求
+  firstRequest(page, cb) {
+    const that = this
+    wx.request({
+      url: app.globalData.host + 'my/moments',
+      data: {
+        page: page,
+        state: 1,
+        _token: app.globalData._token
+      },
+      success: res => {
+        if (200 == res.data.code) {
+          typeof cb == "function" && cb(res.data.data)
+        } else {
+          wx.showModal({
+            title: '提示',
+            content: res.data.msg,
+            showCancel: false,
+            success: rs => {
+              if (rs.confirm) {
+                wx.navigateBack()
+              }
+            }
+          })
+        }
+      }
+    })
+  },
+
+  //上拉刷新
+  onPullDownRefresh() {
+    const that = this
+    that.firstRequest(1, data => {
+      that.setData({
+        publishs: data,
+        close: false
+      })
+      wx.stopPullDownRefresh()
+    })
+  },
+
+  //触底刷新
+  onReachBottom() {
+    const that = this
+    let page = that.data.page
+    let flag = that.data.flag
+    let close = that.data.close
+
+    //阻止重复触发和主动关闭
+    if (flag || close) {
+      return false
+    }
+    wx.showLoading({
+      title: '加载中',
+    })
+    that.setData({
+      flag: true
+    })
+    that.firstRequest(page + 1, data => {
+      if (data.length) {
+        that.setData({
+          publishs: [...that.data.publishs, ...data],
+          flag: false,
+          page: page + 1
+        })
+      } else {
+        that.setData({
+          close: true,
+          flag: false
+        })
+      }
+      wx.hideLoading()
+    })
+  }
 
 })

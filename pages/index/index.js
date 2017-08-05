@@ -61,7 +61,8 @@ Page({
       success: res => {
         if (200 == res.data.code) {
           that.setData({
-            infos: res.data.data
+            infos: res.data.data,
+            close: false
           })
         }
       }
@@ -113,6 +114,17 @@ Page({
     const index = e.currentTarget.dataset.index
     let tmp1 = 'infos[' + index + '].isLike'
     let tmp2 = 'infos[' + index + '].likeCount'
+
+    wx.request({
+      url: app.globalData.host + 'moment/like/' + id,
+      method: 'POST',
+      data: {
+        _token: app.globalData._token,
+      },
+      success: res => {
+
+      }
+    })
     if (that.data.infos[index].isLike) {
       that.setData({
         [tmp1]: 0,
@@ -209,19 +221,27 @@ Page({
             let old_data = that.data.infos
             that.setData({
               infos: [...old_data, ...tmp_data],
-              page: page + 1
+              page: page + 1,
+              flag: false
             })
           } else {
             that.setData({
               close: true,
-              tips_all: true
+              flag: false
             })
           }
         } else {
           wx.showModal({
             title: '提示',
             content: res.data.msg,
-            showCancel: false
+            showCancel: false,
+            success: rs => {
+              if(rs.confirm){
+                that.setData({
+                  close: true
+                })
+              }
+            }
           })
         }
       }

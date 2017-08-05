@@ -1,5 +1,6 @@
 {
   "pages": [
+    "pages/all_comments/all_comments",
     "pages/index/index",
     "pages/checking/checking",
     "pages/publish/publish",

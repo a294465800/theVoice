@@ -1,18 +1,24 @@
 <!--my_publish.wxml-->
 <view class="container">
   <block wx:if="{{publishs.length}}">
-    <view class="my_publish_item" wx:for="{{publishs}}" wx:for-item="publish" wx:key="id">
+    <view class="my_publish_item" wx:for="{{publishs}}" wx:for-item="publish" wx:key="id" data-id="{{publish.id}}" hover-class="push_class" hover-stay-time="150" catchtap="goToInfo">
+      <block wx:if="{{publish.anonymous == 1}}">
+        <view class="nobody">匿</view>
+      </block>
       <view class="my_publish_item_content">{{publish.content}}</view>
       <view class="my_publish_item_info">
-        <block wx:if="{{publish.like}}">
-          <text>{{publish.like}} 喜欢 · </text>
+        <block wx:if="{{publish.likeCount}}">
+          <text>{{publish.likeCount}} 喜欢 · </text>
         </block>
-        <block wx:if="{{publish.comments}}">
-          <text>{{publish.comments}} 评论 · </text>
+        <block wx:if="{{publish.commentCount}}">
+          <text>{{publish.commentCount}} 评论 · </text>
         </block>
-        <text>{{publish.time}}</text>
+        <text>{{publish.updated_at}}</text>
       </view>
     </view>
+    <block wx:if="{{close}}">
+      <view class="tips">没有更多内容了</view>
+    </block>
   </block>
   <block wx:else>
     <view class="tips">暂无内容</view>

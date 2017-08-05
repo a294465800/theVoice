@@ -23,9 +23,9 @@
           </view>
           <text class="infos_item_message">{{info.content}}</text>
           <block wx:if="{{info.images.length}}">
-          <view class="infos_item_pic_list">
-            <image src="{{item.url}}" mode="aspectFill" class="infos_item_pic" wx:for="{{info.images}}" wx:key="id" catchtap="preImage" data-index="{{index}}" data-url="{{item.url}}"></image>
-          </view>
+            <view class="infos_item_pic_list">
+              <image src="{{item.url}}" mode="aspectFill" class="infos_item_pic" wx:for="{{info.images}}" wx:key="id" catchtap="preImage" data-index="{{index}}" data-url="{{item.url}}"></image>
+            </view>
           </block>
           <view class="infos_item_time">编辑于 {{info.updated_at}}</view>
         </view>
@@ -69,7 +69,7 @@
                     <view class="infos_comment_name">{{comment.userName}}</view>
                     <view class="infos_comment_replay">{{comment.content}}</view>
                     <view class="infos_comment_function">
-                      <view class="infos_comment_time">{{comment.updated_at}}</view>
+                      <view class="infos_comment_time" catchtap="goToAllComments">{{comment.updated_at}} 查看对话</view>
                       <view class="infos_comment_like" catchtap="commentsLike" data-id="{{comment.id}}" data-index="{{comment_index}}">
                         <image src="{{comment.isLike?love.ok:love.no}}" mode="aspectFit" class="infos_comment_like_img"></image>
                         <view class="infos_comment_like_num">{{comment.like}}</view>
@@ -78,7 +78,9 @@
                   </view>
                 </view>
               </view>
-              <view class="infos_bottom" hidden="{{!tips_all}}">——— 没有更多内容了 ———</view>
+              <block wx:if="{{close}}">
+                <view class="infos_bottom">没有更多内容了</view>
+              </block>
             </view>
           </block>
           <block wx:else>

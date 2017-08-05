@@ -1,23 +1,34 @@
 <!--my_collect.wxml-->
 <view class="container">
   <block wx:if="{{collects.length}}">
-    <view class="collect_item" wx:for="{{collects}}" wx:for-item="collect" wx:key="id">
-      <view class="cancel_collect" catchtap="cancelCollect">取消收藏</view>
-      <view class="collect_item_head">
-        <image src="{{collect.img}}" mode="aspectFill" class="collect_item_head_img"></image>
-        <view class="collect_item_head_name">{{collect.name}}</view>
-      </view>
+    <view class="collect_item" wx:for="{{collects}}" wx:for-item="collect" wx:key="id" data-id="{{collect.id}}" catchtap="goToInfo" hover-class="push_class" hover-stay-time="150">
+      <view class="cancel_collect" catchtap="cancelCollect" data-id="{{collect.id}}">取消收藏</view>
+      <block wx:if="{{collect.anonymous == 1}}">
+        <view class="collect_item_head">
+          <image src="{{nobody}}" mode="aspectFill" class="collect_item_head_img"></image>
+          <view class="collect_item_head_name">匿名</view>
+        </view>
+      </block>
+      <block wx:else>
+        <view class="collect_item_head">
+          <image src="{{collect.avatar}}" mode="aspectFill" class="collect_item_head_img"></image>
+          <view class="collect_item_head_name">{{collect.userName}}</view>
+        </view>
+      </block>
       <view class="collect_item_content">{{collect.content}}</view>
       <view class="collect_item_info">
-        <block wx:if="{{collect.likes}}">
-          <text>{{collect.likes}} 喜欢 · </text>
+        <block wx:if="{{collect.likeCount}}">
+          <text>{{collect.likeCount}} 喜欢 · </text>
         </block>
-        <block wx:if="{{collect.comments}}">
-          <text>{{collect.comments}} 评论 · </text>
+        <block wx:if="{{collect.commentCount}}">
+          <text>{{collect.commentCount}} 评论 · </text>
         </block>
         <text>查看</text>
       </view>
     </view>
+    <block wx:if="{{close}}">
+      <view class="tips">没有更多内容了</view>
+    </block>
   </block>
   <block wx:else>
     <view class="tips">暂无收藏</view>

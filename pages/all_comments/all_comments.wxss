@@ -1,0 +1,77 @@
+/* all_comments.wxss */
+
+.container {
+  min-height: 100%;
+  background-color: #ececec;
+}
+
+/*  
+  头部评论
+*/
+
+.infos_comment_item {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: 30rpx;
+  padding-bottom: 0;
+  background-color: #fff;
+}
+
+.infos_comment_img {
+  width: 90rpx;
+  height: 90rpx;
+  align-self: flex-start;
+  border-radius: 50%;
+}
+
+.infos_comment_content {
+  flex: 1;
+  margin-left: 20rpx;
+}
+
+.infos_comment_name {
+  font-size: 14px;
+  font-weight: 600;
+  color: #000;
+}
+
+.infos_comment_replay {
+  font-size: 13px;
+  color: #333;
+  word-wrap: break-word;
+  word-break: break-all;
+  padding: 10rpx 0 20rpx;
+}
+
+.infos_comment_function, .infos_comment_like {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.infos_comment_function {
+  margin-bottom: 30rpx;
+}
+
+.infos_comment_time, .infos_comment_like_num {
+  font-size: 13px;
+  color: #999;
+}
+
+.infos_comment_like_img {
+  width: 32rpx;
+  height: 32rpx;
+  margin-right: 10rpx;
+}
+
+/*  
+  对话列表
+*/
+
+.infos_comment_title {
+  color: #888;
+  font-size: 14px;
+  padding: 30rpx;
+  font-weight: 600;
+}

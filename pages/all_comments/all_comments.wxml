@@ -1,0 +1,24 @@
+<!--all_comments.wxml-->
+<view class="container">
+
+  <!--顶部评论  -->
+  <view class="infos_comment_item">
+    <image src="{{comment.avatar}}" class="infos_comment_img" mode="aspectFill"></image>
+    <view class="infos_comment_content">
+      <view class="infos_comment_name">{{comment.userName}}</view>
+      <view class="infos_comment_replay">{{comment.content}}</view>
+      <view class="infos_comment_function">
+        <view class="infos_comment_time" catchtap="goToAllComments">{{comment.updated_at}}</view>
+        <view class="infos_comment_like" catchtap="commentsLike" data-id="{{comment.id}}" data-index="{{comment_index}}">
+          <image src="{{comment.isLike?love.ok:love.no}}" mode="aspectFit" class="infos_comment_like_img"></image>
+          <view class="infos_comment_like_num">{{comment.like}}</view>
+        </view>
+      </view>
+    </view>
+  </view>
+  <!--/顶部评论  -->
+
+  <!--对话详情  -->
+  <view class="infos_comment_title">对话</view>
+  <!--/对话详情  -->
+</view>
