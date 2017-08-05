@@ -48,6 +48,9 @@ Page({
     const that = this
     if (that.data.info_id) {
       that.firstRequset(that.data.info_id)
+      that.setData({
+        close: false
+      })
     }
   },
 
