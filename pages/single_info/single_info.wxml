@@ -8,16 +8,26 @@
         <!--便民信息-->
         <view class="infos_item">
           <view class="infos_item_head">
-            <image src="{{info.store_cover}}" class="infos_item_head_img" mode="aspectFill"></image>
-            <view class="infos_item_head_wrap">
-              <view class="infos_item_head_name">{{info.store_name}}</view>
-            </view>
+            <block wx:if="{{info.anonymous == 1}}">
+              <image src="{{nobody}}" class="infos_item_head_img" mode="aspectFill"></image>
+              <view class="infos_item_head_wrap">
+                <view class="infos_item_head_name">匿名</view>
+              </view>
+            </block>
+            <block wx:else>
+              <image src="{{info.avatar}}" class="infos_item_head_img" mode="aspectFill"></image>
+              <view class="infos_item_head_wrap">
+                <view class="infos_item_head_name">{{info.userName}}</view>
+              </view>
+            </block>
           </view>
           <text class="infos_item_message">{{info.content}}</text>
+          <block wx:if="{{info.images.length}}">
           <view class="infos_item_pic_list">
-            <image src="{{item}}" mode="aspectFill" class="infos_item_pic" wx:for="{{info.img}}" wx:key="*this" catchtap="preImage" data-index="{{index}}" data-url="{{item}}"></image>
+            <image src="{{item.url}}" mode="aspectFill" class="infos_item_pic" wx:for="{{info.images}}" wx:key="id" catchtap="preImage" data-index="{{index}}" data-url="{{item.url}}"></image>
           </view>
-          <view class="infos_item_time">发布于 {{info.createtime}}</view>
+          </block>
+          <view class="infos_item_time">编辑于 {{info.updated_at}}</view>
         </view>
         <!--/ 便民信息-->
 
@@ -89,7 +99,7 @@
       <view class="function_item_name">喜欢</view>
     </view>
     <view class="function_item" catchtap="adCollect" data-id="{{info.id}}">
-      <image src="{{info.collect?collect.ok:collect.no}}" mode="aspectFit" class="function_item_img"></image>
+      <image src="{{info.isCollect?collect.ok:collect.no}}" mode="aspectFit" class="function_item_img"></image>
       <view class="function_item_name">收藏</view>
     </view>
     <view class="function_item" catchtap="goToComment" data-id="{{info.id}}">

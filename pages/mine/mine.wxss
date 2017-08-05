@@ -3,6 +3,7 @@
 .container {
   background-color: #eee;
   height: 100%;
+  position: relative;
 }
 
 /*
@@ -35,6 +36,10 @@
   color: #999;
 }
 
+.login {
+  color: #333;
+}
+
 .mine_funtion_part {
   padding: 24rpx 30rpx;
   margin-bottom: 2rpx;
@@ -59,4 +64,15 @@
 
 .mine_button::after {
   border: 0;
+}
+
+/*
+  退出
+*/
+.logout {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  font-size: 16px;
 }

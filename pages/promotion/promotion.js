@@ -82,6 +82,14 @@ Page({
   //点赞
   likePunch(e) {
     const that = this
+    if (!app.globalData.userInfo) {
+      app.ifLogin((userInfo) => {
+        that.setData({
+          userInfo: userInfo
+        })
+      })
+      return false
+    }
     const id = e.currentTarget.dataset.id
     const index = e.currentTarget.dataset.index
     let tmp1 = 'infos[' + index + '].isLike'
@@ -145,6 +153,14 @@ Page({
 
   //发布评论
   goToPublish() {
+    if (!app.globalData.userInfo) {
+      app.ifLogin((userInfo) => {
+        that.setData({
+          userInfo: userInfo
+        })
+      })
+      return false
+    }
     wx.navigateTo({
       url: '/pages/publish/publish?type=2',
     })

@@ -19,58 +19,33 @@ Page({
     animationPublish: {},
 
     //触底提示
-    tips_flag: false,
+    flag: false,
     tips_all: false,
+    close: false,
+    page: 1,
 
     //接口数据
     infos: null,
     ad_imgs: null,
 
-    //模拟数据
-    ad_img: [
-      'https://www.sosomarketing.com/wp-content/uploads/2016/05/YOUTUBE%E5%BD%B1%E7%89%87%E5%BB%A3%E5%91%8A.jpg',
-      'http://www.damndigital.com/wp-content/uploads/2013/03/damndigital_advertising-creative_2013-03_01.jpg',
-      '/images/ad.png'
-    ],
-
-    info: [
-      {
-        id: 1,
-        store_name: '匿名游客',
-        createtime: '2017-05-22',
-        content: '小程序的广告都打到附近的小程序中来~',
-        img: [
-          'http://www.onead.com.tw/wp-content/uploads/2017/06/shutterstock_291472427-2.jpg'
-        ],
-        store_cover: '/images/icon/nobody.png',
-        likes: 22,
-        comment: 12,
-        isLike: 1,
-      },
-      {
-        id: 1,
-        store_name: '匿名游客',
-        createtime: '2017-05-22',
-        content: '小程序的广告都打到附近的小程序中来小程序的广告都打到附近的小程序中来小程序的广告都打到附近的小程序中来小程序的广告都打到附近的小程序中来小程序的广告都打到附近的小程序中来小程序的广告都打到附近的小程序中来小程序的广告都打到附近的小程序中来小程序的广告都打到附近的小程序中来小程序的广告都打到附近的小程序中来小程序的广告都打到附近的小程序中来~',
-        img: [
-          'http://www.onead.com.tw/wp-content/uploads/2017/06/shutterstock_291472427-2.jpg',
-          'http://yuxuange.com/show/img/20/12L260C3964P-1PK.jpg',
-          'https://img.technews.tw/wp-content/uploads/2015/09/Gmail_Transparent_Wide-590x303.jpg'
-        ],
-        store_cover: '/images/icon/nobody.png',
-        likes: 10,
-        comment: 323,
-        isLike: 0,
-      }
-    ]
   },
 
   onLoad() {
     const that = this
     app.getToken(() => {
-      app.nowLogin(() => {
+      app.nowLogin((userInfo) => {
+        console.log(userInfo)
+        that.setData({
+          userInfo: userInfo
+        })
         that.firstRequest()
       })
+    })
+  },
+
+  onShow() {
+    this.setData({
+      userInfo: app.globalData.userInfo
     })
   },
 
@@ -126,6 +101,14 @@ Page({
   //点赞
   likePunch(e) {
     const that = this
+    if (!app.globalData.userInfo) {
+      app.ifLogin((userInfo) => {
+        that.setData({
+          userInfo: userInfo
+        })
+      })
+      return false
+    }
     const id = e.currentTarget.dataset.id
     const index = e.currentTarget.dataset.index
     let tmp1 = 'infos[' + index + '].isLike'
@@ -186,6 +169,14 @@ Page({
 
   //发布
   goToPublish() {
+    if (!app.globalData.userInfo) {
+      app.ifLogin((userInfo) => {
+        that.setData({
+          userInfo: userInfo
+        })
+      })
+      return false
+    }
     wx.navigateTo({
       url: '/pages/publish/publish?type=1',
     })
@@ -194,8 +185,49 @@ Page({
   //触底刷新
   onReachBottom() {
     const that = this
+    let flag = that.data.flag
+    let close = that.data.close
+    //阻止重复刷新，或者触底主动关闭
+    if (flag || close) {
+      return false
+    }
+    wx.showLoading({
+      title: '加载中',
+    })
+    let page = that.data.page
+    wx.request({
+      url: app.globalData.host + 'moments?page=' + (page + 1),
+      data: {
+        type: 1,
+        _token: app.globalData._token
+      },
+      success: res => {
+        wx.hideLoading()
+        if (200 == res.data.code) {
+          let tmp_data = res.data.data
+          if (tmp_data.length) {
+            let old_data = that.data.infos
+            that.setData({
+              infos: [...old_data, ...tmp_data],
+              page: page + 1
+            })
+          } else {
+            that.setData({
+              close: true,
+              tips_all: true
+            })
+          }
+        } else {
+          wx.showModal({
+            title: '提示',
+            content: res.data.msg,
+            showCancel: false
+          })
+        }
+      }
+    })
     that.setData({
-      tips_flag: true,
+      flag: true,
     })
   },
 

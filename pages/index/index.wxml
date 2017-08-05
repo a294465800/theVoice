@@ -18,7 +18,7 @@
             <image src="{{info.anonymous == 1 ? nobody : info.avatar}}" class="infos_item_head_img" mode="aspectFill"></image>
             <view class="infos_item_head_wrap">
               <view class="infos_item_head_name">{{info.anonymous == 1 ? '匿名' : info.userName}}</view>
-              <view class="infos_item_time">{{info.created_at}}</view>
+              <view class="infos_item_time">{{info.updated_at}}</view>
             </view>
           </view>
           <text class="infos_item_message">{{info.content}}</text>
@@ -46,7 +46,6 @@
           </view>
         </view>
       </view>
-      <view class="infos_bottom" hidden="{{!tips_flag}}">加载中···</view>
       <view class="infos_bottom" hidden="{{!tips_all}}">——— 没有更多内容了 ———</view>
     </block>
     <block wx:else>

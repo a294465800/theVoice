@@ -1,12 +1,51 @@
 // mine.js
+const app = getApp()
+
 Page({
 
   data: {
+    userInfo: null
+  },
+
+  onLoad(options) {
 
   },
 
-  onLoad: function (options) {
+  onShow() {
+    this.setData({
+      userInfo: app.globalData.userInfo
+    })
+  },
 
+  //登录
+  login() {
+    const that = this
+    console.log(1)
+    app.getSetting((userInfo) => {
+      that.setData({
+        userInfo: userInfo
+      })
+    })
+  },
+
+  //退出
+  logout() {
+    const that = this
+    wx.showModal({
+      title: '提示',
+      content: '确定退出登录吗？',
+      success: res => {
+        if (res.confirm) {
+          that.setData({
+            userInfo: null
+          })
+          app.globalData.userInfo = null
+          wx.showToast({
+            title: '退出成功',
+          })
+        }
+      }
+    })
   },
 
   //我发布的

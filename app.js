@@ -38,10 +38,6 @@ App({
         }
       }
     })
-    if (that.globalData.userInfo) {
-      typeof cb == "function" && cb(that.globalData.userInfo)
-      return false
-    }
     wx.getSetting({
       success: setting => {
         if (setting.authSetting["scope.userInfo"]) {
@@ -58,7 +54,6 @@ App({
                   wx.request({
                     url: that.globalData.host + 'login',
                     method: 'POST',
-                    header: that.globalData.header,
                     data: {
                       code: rs.code,
                       encryptedData: res.encryptedData,
@@ -77,6 +72,7 @@ App({
                           title: '登录成功',
                         })
                       }
+                      typeof cb == "function" && cb(that.globalData.userInfo)
                     }
                   })
                 }
@@ -130,13 +126,12 @@ App({
           wx.login({
             withCredentials: true,
             success: rs => {
-              that.globalData.userInfo = rs.userInfo
               wx.getUserInfo({
                 success: res => {
+                  that.globalData.userInfo = res.userInfo
                   wx.request({
                     url: that.globalData.host + 'login',
                     method: 'POST',
-                    header: that.globalData.header,
                     data: {
                       code: rs.code,
                       encryptedData: res.encryptedData,
@@ -168,4 +163,18 @@ App({
       }
     })
   },
+
+  //登录询问
+  ifLogin(cb){
+    const that = this
+    wx.showModal({
+      title: '提示',
+      content: '请先登录',
+      success: res => {
+        if(res.confirm){
+          that.getSetting(cb)
+        }
+      }
+    })
+  }
 })

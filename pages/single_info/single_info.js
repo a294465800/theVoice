@@ -1,12 +1,13 @@
 // single_info.js
+const app = getApp()
 Page({
 
   data: {
 
     //点赞和收藏图标
     like: {
-      'ok': '/images/icon/like.png',
-      'no': '/images/icon/like_r.png'
+      'ok': '/images/icon/like_r.png',
+      'no': '/images/icon/like.png'
     },
     collect: {
       'ok': '/images/icon/collect_c.png',
@@ -16,6 +17,7 @@ Page({
       'ok': '/images/icon/good_g.png',
       'no': '/images/icon/good.png'
     },
+    nobody: '/images/icon/nobody.png',
 
     //提示
     tips_all: false,
@@ -135,8 +137,39 @@ Page({
   onLoad(options) {
     const that = this
     const id = options.id
+    that.firstRequset(id)
     that.setData({
       info_id: id
+    })
+  },
+
+  //初次请求
+  firstRequset(id) {
+    const that = this
+    wx.request({
+      url: app.globalData.host + 'moment/' + id,
+      data: {
+        type: 1,
+        _token: app.globalData._token
+      },
+      success: res => {
+        if (200 == res.data.code) {
+          that.setData({
+            info: res.data.data
+          })
+        } else {
+          wx.showModal({
+            title: '提示',
+            content: res.data.msg,
+            showCancel: false,
+            success: rs => {
+              if (rs.confirm) {
+                wx.navigateBack()
+              }
+            }
+          })
+        }
+      }
     })
   },
 
@@ -184,9 +217,14 @@ Page({
   preImage(e) {
     const that = this
     let url = e.currentTarget.dataset.url
+    // let urls = that.data.info.img
+    let tmp = []
+    for (let i in that.data.info.img) {
+      tmp.push(i.url)
+    }
     wx.previewImage({
       current: url,
-      urls: that.data.info.img,
+      urls: tmp,
     })
   },
 
