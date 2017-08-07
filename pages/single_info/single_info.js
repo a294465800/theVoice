@@ -39,9 +39,6 @@ Page({
     const that = this
     const id = options.id
     that.firstRequset(id)
-    that.setData({
-      info_id: id
-    })
   },
 
   onShow() {
@@ -66,7 +63,8 @@ Page({
       success: res => {
         if (200 == res.data.code) {
           that.setData({
-            info: res.data.data
+            info: res.data.data,
+            info_id: id
           })
         } else {
           wx.showModal({
@@ -250,7 +248,7 @@ Page({
       title: '加载中',
     })
     wx.request({
-      url: app.globalData.host + 'comment/' + that.data.info.id,
+      url: app.globalData.host + 'comments/' + that.data.info.id,
       data: {
         page: page + 1,
         _token: app.globalData._token
@@ -301,11 +299,20 @@ Page({
     })
   },
 
+  //回复评论
+  replayComment(e) {
+    const comment_id = e.currentTarget.dataset.comment_id
+    const moment_id = e.currentTarget.dataset.moment_id
+    wx.navigateTo({
+      url: '/pages/comment/comment?comment_id=' + comment_id + '&moment_id=' + moment_id,
+    })
+  },
+
   //查看所有评论
   goToAllComments(e) {
-    // const id = e.currentTarget.dataset.id
+    const id = e.currentTarget.dataset.id
     wx.navigateTo({
-      url: '/pages/all_comments/all_comments?id=' + 1,
+      url: '/pages/all_comments/all_comments?id=' + id,
     })
   }
 })

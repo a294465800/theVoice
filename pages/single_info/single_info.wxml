@@ -39,13 +39,18 @@
             <view class="infos_comment_hot">
               <view class="infos_comment_title">热门评论({{info.hotComments.length}})</view>
               <view class="infos_comment_list">
-                <view class="infos_comment_item" wx:for="{{info.hotComments}}" wx:for-item="hot" wx:key="id" wx:for-index="hot_index" data-id="{{hot.id}}">
+                <view class="infos_comment_item" hover-class="push_class" hover-stay-time="150" wx:for="{{info.hotComments}}" wx:for-item="hot" wx:key="id" wx:for-index="hot_index" data-id="{{hot.id}}">
                   <image src="{{hot.avatar}}" class="infos_comment_img" mode="aspectFill"></image>
-                  <view class="infos_comment_content">
+                  <view class="infos_comment_content" catchtap="{{hot.comment_id == 0?'replayComment':''}}" data-comment_id="{{hot.id}}" data-moment_id="{{info.id}}">
                     <view class="infos_comment_name">{{hot.userName}}</view>
                     <view class="infos_comment_replay">{{hot.content}}</view>
                     <view class="infos_comment_function">
-                      <view class="infos_comment_time">{{hot.updated_at}}</view>
+                      <block wx:if="{{hot.comment_id == 0}}">
+                        <view class="infos_comment_time">{{hot.updated_at}}</view>
+                      </block>
+                      <block wx:else>
+                        <view class="infos_comment_time" catchtap="goToAllComments" data-id="{{hot.id}}">{{hot.updated_at}} 查看对话</view>
+                      </block>
                       <view class="infos_comment_like" catchtap="hotLove" data-id="{{hot.id}}" data-index="{{hot_index}}">
                         <image src="{{hot.isLike?love.ok:love.no}}" mode="aspectFit" class="infos_comment_like_img"></image>
                         <view class="infos_comment_like_num">{{hot.like}}</view>
@@ -63,13 +68,18 @@
             <view class="infos_comment_all">
               <view class="infos_comment_title">评论({{info.commentCount}})</view>
               <view class="infos_comment_list">
-                <view class="infos_comment_item" wx:for="{{info.newComments}}" wx:for-item="comment" wx:for-index="comment_index" wx:key="id" data-id="{{comment.id}}">
+                <view class="infos_comment_item" hover-class="push_class" hover-stay-time="150" wx:for="{{info.newComments}}" wx:for-item="comment" wx:for-index="comment_index" wx:key="id" data-id="{{comment.id}}">
                   <image src="{{comment.avatar}}" class="infos_comment_img" mode="aspectFill"></image>
-                  <view class="infos_comment_content">
+                  <view class="infos_comment_content" catchtap="{{comment.comment_id == 0?'replayComment':''}}" data-comment_id="{{comment.id}}" data-moment_id="{{info.id}}">
                     <view class="infos_comment_name">{{comment.userName}}</view>
                     <view class="infos_comment_replay">{{comment.content}}</view>
                     <view class="infos_comment_function">
-                      <view class="infos_comment_time" catchtap="goToAllComments">{{comment.updated_at}} 查看对话</view>
+                      <block wx:if="{{comment.comment_id == 0}}">
+                        <view class="infos_comment_time">{{comment.updated_at}}</view>
+                      </block>
+                      <block wx:else>
+                        <view class="infos_comment_time" catchtap="goToAllComments" data-id="{{comment.id}}">{{comment.updated_at}} 查看对话</view>
+                      </block>
                       <view class="infos_comment_like" catchtap="commentsLike" data-id="{{comment.id}}" data-index="{{comment_index}}">
                         <image src="{{comment.isLike?love.ok:love.no}}" mode="aspectFit" class="infos_comment_like_img"></image>
                         <view class="infos_comment_like_num">{{comment.like}}</view>

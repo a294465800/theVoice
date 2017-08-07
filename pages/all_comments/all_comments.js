@@ -1,4 +1,6 @@
 // all_comments.js
+const app = getApp()
+
 Page({
 
   data: {
@@ -62,7 +64,34 @@ Page({
   },
 
   onLoad(options) {
+    const that = this
+    const id = options.id
+    that.firstRequest(id)
+  },
 
+  firstRequest(id){
+    wx.request({
+      url: app.globalData.host + 'comment/' + id,
+      data: {
+        _token: app.globalData._token,
+      },
+      success: res => {
+        if(200 == res.data.code){
+
+        }else {
+          wx.showModal({
+            title: '提示',
+            content: res.data.msg,
+            showCancel: false,
+            success: rs => {
+              if(rs.confirm){
+                wx.navigateBack()
+              }
+            }
+          })
+        }
+      }
+    })
   },
 
   //回复当前评论

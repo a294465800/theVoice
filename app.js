@@ -67,6 +67,7 @@ App({
                         wx.showToast({
                           title: '登录失败',
                         })
+                        that.globalData.userInfo = null
                       } else {
                         wx.showToast({
                           title: '登录成功',
@@ -145,6 +146,7 @@ App({
                         wx.showToast({
                           title: '登录失败',
                         })
+                        that.globalData.userInfo = null
                       } else {
                         wx.showToast({
                           title: '登录成功',

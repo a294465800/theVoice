@@ -18,7 +18,7 @@
 
     <!--审核中  -->
     <view class="mine_funtion_part" hover-class="push_class" hover-stay-time="150" catchtap="goToChecking">
-      <image src="/images/mine/mine_publish.png" mode="aspectFit" class="mine_funtion_part_icon"></image>
+      <image src="/images/mine/checking.png" mode="aspectFit" class="mine_funtion_part_icon"></image>
       <view class="mine_funtion_part_titile">审核中</view>
     </view>
     <!--/审核中  -->
@@ -48,7 +48,7 @@
 
   <!--合作联系  -->
   <button open-type="contact" class="mine_funtion_part mine_button" hover-class="push_class" hover-stay-time="150">
-    <image src="/images/mine/about.png" mode="aspectFit" class="mine_funtion_part_icon"></image>
+    <image src="/images/mine/contact.png" mode="aspectFit" class="mine_funtion_part_icon"></image>
     <view class="mine_funtion_part_titile">合作联系</view>
   </button>
   <!--/合作联系  -->
