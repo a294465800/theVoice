@@ -60,6 +60,7 @@
 .infos_comment_time, .infos_comment_like_num {
   font-size: 13px;
   color: #999;
+  flex: 1;
 }
 
 .infos_comment_like_img {
@@ -106,6 +107,7 @@
 /*  
   回复当前
 */
+
 .replay_current {
   width: 100%;
   position: fixed;
@@ -126,4 +128,8 @@
 
 .replay_push {
   color: #000;
+}
+
+.check_comment {
+  padding-left: 10%;
 }

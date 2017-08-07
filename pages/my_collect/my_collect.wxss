@@ -22,7 +22,7 @@
   position: absolute;
   top: 10rpx;
   right: 10rpx;
-  color: red;
+  color: #d9534f;
   font-size: 14px;
 }
 

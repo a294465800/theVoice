@@ -9,58 +9,11 @@ Page({
       'no': '/images/icon/good.png'
     },
 
-    close: true,
+    comment_id: null,
 
-    //模拟数据
-    top_comment: {
-      id: 2,
-      userName: '诗永',
-      content: '阿斯打扫打扫大',
-      updated_at: '2017-04-11',
-      avatar: '/images/icon/nobody.png',
-      like: 22
-    },
+    //接口数据
+    comments: null,
 
-    comments: [
-      {
-        id: 1,
-        userName: '诗永',
-        content: '阿斯打扫打扫大',
-        updated_at: '2017-04-11',
-        avatar: '/images/icon/nobody.png',
-        like: 22,
-        isReplay: 0,
-      },
-      {
-        id: 2,
-        userName: '诗永',
-        content: '阿斯打扫打扫大',
-        updated_at: '2017-04-11',
-        avatar: '/images/icon/nobody.png',
-        like: 2,
-        isReplay: 1,
-        target: 'aa'
-      },
-      {
-        id: 3,
-        userName: 'aa',
-        content: '我不知道说些啥',
-        updated_at: '2017-04-11',
-        avatar: '/images/icon/nobody.png',
-        like: 212,
-        isReplay: 0,
-      },
-      {
-        id: 4,
-        userName: '诗永',
-        content: '阿斯打扫打扫大',
-        updated_at: '2017-04-11',
-        avatar: '/images/icon/nobody.png',
-        like: 2,
-        isReplay: 1,
-        target: '诗永'
-      },
-    ]
   },
 
   onLoad(options) {
@@ -69,22 +22,34 @@ Page({
     that.firstRequest(id)
   },
 
-  firstRequest(id){
+  onShow() {
+    const that = this
+    if (that.data.comment_id) {
+      that.firstRequest(that.data.comment_id)
+    }
+  },
+
+  //初次请求
+  firstRequest(id) {
+    const that = this
     wx.request({
       url: app.globalData.host + 'comment/' + id,
       data: {
         _token: app.globalData._token,
       },
       success: res => {
-        if(200 == res.data.code){
-
-        }else {
+        if (200 == res.data.code) {
+          that.setData({
+            comments: res.data.data,
+            comment_id: id
+          })
+        } else {
           wx.showModal({
             title: '提示',
             content: res.data.msg,
             showCancel: false,
             success: rs => {
-              if(rs.confirm){
+              if (rs.confirm) {
                 wx.navigateBack()
               }
             }
@@ -94,11 +59,66 @@ Page({
     })
   },
 
+  //点赞评论
+  loveFunc(str, id, index) {
+    const that = this
+    let tmp1, tmp2, tmp_isLike, tmp_like_num
+    if (index != null) {
+      tmp1 = 'comments.' + str + '[' + index + '].isLike'
+      tmp2 = 'comments.' + str + '[' + index + '].like'
+      tmp_isLike = that.data.comments[str][index].isLike
+      tmp_like_num = that.data.comments[str][index].like
+    } else {
+      tmp1 = 'comments.' + str + '.isLike'
+      tmp2 = 'comments.' + str + '.like'
+      tmp_isLike = that.data.comments[str].isLike
+      tmp_like_num = that.data.comments[str].like
+    }
+
+    if (tmp_isLike) {
+      wx.showToast({
+        title: '已点赞过',
+      })
+      return false
+    }
+    wx.request({
+      url: app.globalData.host + 'comment/like/' + id,
+      data: {
+        _token: app.globalData._token,
+      },
+      success: res => {
+        if (200 == res.data.code) {
+          that.setData({
+            [tmp1]: 1,
+            [tmp2]: tmp_like_num + 1
+          })
+        } else {
+          wx.showModal({
+            title: '提示',
+            content: res.data.msg,
+            showCancel: false
+          })
+        }
+      }
+    })
+  },
+
+  topLove(e) {
+    const id = e.currentTarget.dataset.id
+    this.loveFunc('comment', id, null)
+  },
+  commentsLike(e) {
+    const id = e.currentTarget.dataset.id
+    const index = e.currentTarget.dataset.index
+    this.loveFunc('converse', id, index)
+  },
+
   //回复当前评论
   replayCurrentComment(e) {
-    const id = e.currentTarget.dataset.id
+    const comment_id = e.currentTarget.dataset.comment_id
+    const moment_id = e.currentTarget.dataset.moment_id
     wx.navigateTo({
-      url: '/pages/comment/comment?id=' + id,
+      url: '/pages/comment/comment?comment_id=' + comment_id + '&moment_id=' + moment_id,
     })
   },
 
@@ -107,6 +127,14 @@ Page({
     const id = e.currentTarget.dataset.id
     wx.navigateTo({
       url: '/pages/comment/comment?id=' + id,
+    })
+  },
+
+  //查看所有评论
+  goToAllComments(e) {
+    const id = e.currentTarget.dataset.id
+    wx.redirectTo({
+      url: '/pages/all_comments/all_comments?id=' + id,
     })
   }
 

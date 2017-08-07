@@ -97,7 +97,7 @@ Page({
     let tmp2 = 'info.' + str + '[' + index + '].like'
     let tmp_isLike = that.data.info[str][index].isLike
 
-    if (1 == tmp_isLike) {
+    if (tmp_isLike) {
       wx.showToast({
         title: '已点赞过',
       })

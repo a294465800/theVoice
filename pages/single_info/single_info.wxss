@@ -183,6 +183,7 @@
 .infos_comment_time, .infos_comment_like_num {
   font-size: 13px;
   color: #999;
+  flex: 1;
 }
 
 .infos_comment_like_img {
@@ -221,4 +222,8 @@
   font-size: 14px;
   color: #999;
   margin-top: 10rpx;
+}
+
+.check_comment {
+  padding-left: 10%;
 }
