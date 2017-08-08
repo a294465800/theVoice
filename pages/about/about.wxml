@@ -1,4 +1,11 @@
 <!--about.wxml-->
 <view class="container">
-  
+  <view class="about_top">
+    <view class="about_top_top">
+      <image src="/images/icon/logo.png" mode="widthFix" class="about_img"></image>
+      <view class="about_font_big about_bold">第一声 - 潮汕人自己的发声平台</view>
+    </view>
+    <view class="about_font_big">更多地区招商合作中 · · ·</view>
+  </view>
+  <view class="about_bottom about_font">CopyRight © 2017 广州市森乾信息科技有限公司</view>
 </view>

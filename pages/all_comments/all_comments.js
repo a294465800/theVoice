@@ -115,6 +115,15 @@ Page({
 
   //回复当前评论
   replayCurrentComment(e) {
+    const that = this
+    if (!app.globalData.userInfo) {
+      app.ifLogin((userInfo) => {
+        that.setData({
+          userInfo: userInfo
+        })
+      })
+      return false
+    }
     const comment_id = e.currentTarget.dataset.comment_id
     const moment_id = e.currentTarget.dataset.moment_id
     wx.navigateTo({
@@ -124,6 +133,15 @@ Page({
 
   //回复评论
   replayComment(e) {
+    const that = this
+    if (!app.globalData.userInfo) {
+      app.ifLogin((userInfo) => {
+        that.setData({
+          userInfo: userInfo
+        })
+      })
+      return false
+    }
     const id = e.currentTarget.dataset.id
     wx.navigateTo({
       url: '/pages/comment/comment?id=' + id,

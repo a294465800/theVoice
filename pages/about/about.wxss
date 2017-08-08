@@ -1,1 +1,45 @@
 /* about.wxss */
+
+.container {
+  height: 100%;
+  padding-top: 10%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  padding-bottom: 5%;
+}
+
+.about_top, .about_top_top {
+  width: 100%;
+}
+
+.about_img {
+  width: 60%;
+  margin-bottom: 20rpx;
+}
+
+.about_top_top, .about_top {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.about_top_top {
+  margin-bottom: 50rpx;
+}
+
+.about_font {
+  font-size: 14px;
+  color: #000;
+}
+
+.about_font_big {
+  font-size: 16px;
+  color: #000;
+}
+
+.about_bold {
+  font-weight: 600;
+}

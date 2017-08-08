@@ -84,9 +84,10 @@ Page({
 
   //分享
   onShareAppMessage() {
+    const that = this
     return {
-      title: '区广告',
-      path: '/pages/single_info/single_info?id=' + id,
+      title: '第一声 - 潮汕人自己的发声平台',
+      path: '/pages/single_info/single_info?id=' + that.data.info_id,
     }
   },
 
@@ -157,6 +158,14 @@ Page({
   //广告点赞
   AdLove(e) {
     const that = this
+    if (!app.globalData.userInfo) {
+      app.ifLogin((userInfo) => {
+        that.setData({
+          userInfo: userInfo
+        })
+      })
+      return false
+    }
     const id = e.currentTarget.dataset.id
     let tmp = 'info.isLike'
 
@@ -184,6 +193,14 @@ Page({
   //收藏
   adCollect(e) {
     const that = this
+    if (!app.globalData.userInfo) {
+      app.ifLogin((userInfo) => {
+        that.setData({
+          userInfo: userInfo
+        })
+      })
+      return false
+    }
     const id = e.currentTarget.dataset.id
     let tmp = 'info.isCollect'
 
@@ -229,6 +246,14 @@ Page({
   //评论
   goToComment(e) {
     const that = this
+    if (!app.globalData.userInfo) {
+      app.ifLogin((userInfo) => {
+        that.setData({
+          userInfo: userInfo
+        })
+      })
+      return false
+    }
     const id = e.currentTarget.dataset.id
     wx.navigateTo({
       url: '/pages/comment/comment?moment_id=' + that.data.info.id,
@@ -301,6 +326,15 @@ Page({
 
   //回复评论
   replayComment(e) {
+    const that = this
+    if (!app.globalData.userInfo) {
+      app.ifLogin((userInfo) => {
+        that.setData({
+          userInfo: userInfo
+        })
+      })
+      return false
+    }
     const comment_id = e.currentTarget.dataset.comment_id
     const moment_id = e.currentTarget.dataset.moment_id
     wx.navigateTo({

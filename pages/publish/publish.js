@@ -128,9 +128,9 @@ Page({
         showCancel: false
       })
     } else {
-      // that.setData({
-      //   'message.formID': e.formId
-      // })
+      that.setData({
+        'message.formID': e.formId
+      })
       wx.request({
         url: app.globalData.host + 'moment/add',
         method: 'POST',
