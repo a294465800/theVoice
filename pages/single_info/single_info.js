@@ -271,6 +271,7 @@ Page({
     let page = that.data.page
     wx.showLoading({
       title: '加载中',
+      mask: true
     })
     wx.request({
       url: app.globalData.host + 'comments/' + that.data.info.id,

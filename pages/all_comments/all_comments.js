@@ -60,7 +60,7 @@ Page({
   },
 
   //点赞评论
-  loveFunc(str, id, index) {
+  loveFunc(str, id, index, API) {
     const that = this
     let tmp1, tmp2, tmp_isLike, tmp_like_num
     if (index != null) {
@@ -82,7 +82,7 @@ Page({
       return false
     }
     wx.request({
-      url: app.globalData.host + 'comment/like/' + id,
+      url: app.globalData.host + API + id,
       data: {
         _token: app.globalData._token,
       },
@@ -105,12 +105,12 @@ Page({
 
   topLove(e) {
     const id = e.currentTarget.dataset.id
-    this.loveFunc('comment', id, null)
+    this.loveFunc('comment', id, null, 'comment/like/')
   },
   commentsLike(e) {
     const id = e.currentTarget.dataset.id
     const index = e.currentTarget.dataset.index
-    this.loveFunc('converse', id, index)
+    this.loveFunc('converse', id, index, 'reply/like/')
   },
 
   //回复当前评论
@@ -142,18 +142,10 @@ Page({
       })
       return false
     }
-    const id = e.currentTarget.dataset.id
+    const id = e.currentTarget.dataset.comment_id
     wx.navigateTo({
-      url: '/pages/comment/comment?id=' + id,
+      url: '/pages/comment/comment?comment_id=' + id + '&API=true',
     })
   },
-
-  //查看所有评论
-  goToAllComments(e) {
-    const id = e.currentTarget.dataset.id
-    wx.redirectTo({
-      url: '/pages/all_comments/all_comments?id=' + id,
-    })
-  }
 
 })

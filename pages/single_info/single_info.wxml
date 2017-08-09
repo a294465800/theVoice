@@ -13,12 +13,14 @@
                 <image src="{{nobody}}" class="infos_item_head_img" mode="aspectFill"></image>
                 <view class="infos_item_head_wrap">
                   <view class="infos_item_head_name">匿名</view>
+                  <view class="infos_item_time_top">{{info.updated_at}}</view>
                 </view>
               </block>
               <block wx:else>
                 <image src="{{info.avatar}}" class="infos_item_head_img" mode="aspectFill"></image>
                 <view class="infos_item_head_wrap">
                   <view class="infos_item_head_name">{{info.userName}}</view>
+                  <view class="infos_item_time_top">{{info.updated_at}}</view>
                 </view>
               </block>
             </view>
@@ -28,7 +30,6 @@
                 <image src="{{item.url}}" mode="aspectFill" class="infos_item_pic" wx:for="{{info.images}}" wx:key="id" catchtap="preImage" data-index="{{index}}" data-url="{{item.url}}"></image>
               </view>
             </block>
-            <view class="infos_item_time">编辑于 {{info.updated_at}}</view>
           </view>
           <!--/ 便民信息-->
 
@@ -46,11 +47,11 @@
                       <view class="infos_comment_name">{{hot.userName}}</view>
                       <view class="infos_comment_replay">{{hot.content}}</view>
                       <view class="infos_comment_function">
-                        <block wx:if="{{hot.comment_id == 0}}">
+                        <block wx:if="{{hot.reply == 0}}">
                           <view class="infos_comment_time">{{hot.updated_at}}</view>
                         </block>
                         <block wx:else>
-                          <view class="infos_comment_time" catchtap="goToAllComments" data-id="{{hot.id}}">{{hot.updated_at}} <text class="check-comment">查看对话</text></view>
+                          <view class="infos_comment_time" catchtap="goToAllComments" data-id="{{hot.id}}">{{hot.updated_at}} <text class="check_comment">查看对话</text></view>
                         </block>
                         <view class="infos_comment_like" catchtap="hotLove" data-id="{{hot.id}}" data-index="{{hot_index}}">
                           <image src="{{hot.isLike?love.ok:love.no}}" mode="aspectFit" class="infos_comment_like_img"></image>
@@ -75,7 +76,7 @@
                       <view class="infos_comment_name">{{comment.userName}}</view>
                       <view class="infos_comment_replay">{{comment.content}}</view>
                       <view class="infos_comment_function">
-                        <block wx:if="{{comment.comment_id == 0}}">
+                        <block wx:if="{{comment.reply == 0}}">
                           <view class="infos_comment_time">{{comment.updated_at}}</view>
                         </block>
                         <block wx:else>

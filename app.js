@@ -5,7 +5,7 @@ App({
 
   globalData: {
     userInfo: null,
-    host: 'http://119.23.202.220/api/v1/',
+    host: 'https://www.xiashantown.cn/api/v1/',
     app_id: 'wxfec807d3f372360b',
     _token: ''
   },
@@ -43,6 +43,7 @@ App({
         if (setting.authSetting["scope.userInfo"]) {
           wx.showLoading({
             title: '登录中',
+            mask: true
           })
           //调用登录接口
           wx.login({

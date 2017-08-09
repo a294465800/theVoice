@@ -34,7 +34,6 @@ Page({
     const that = this
     app.getToken(() => {
       app.nowLogin((userInfo) => {
-        console.log(userInfo)
         that.setData({
           userInfo: userInfo
         })
@@ -47,6 +46,14 @@ Page({
     this.setData({
       userInfo: app.globalData.userInfo
     })
+  },
+
+  //分享
+  onShareAppMessage() {
+    return {
+      title: '第一声 - 潮汕人自己的发声平台',
+      path: '/pages/index/index',
+    }
   },
 
   //初次请求封装
@@ -70,7 +77,8 @@ Page({
     wx.request({
       url: app.globalData.host + 'adverts',
       data: {
-        app_id: app.globalData.app_id
+        app_id: app.globalData.app_id,
+        _token: app.globalData._token
       },
       success: res => {
         if (200 == res.data.code) {
@@ -172,7 +180,7 @@ Page({
     for (let i in tmp) {
       urls.push(tmp[i].url)
     }
-    console.log(urls)
+    
     wx.previewImage({
       current: url,
       urls: urls,
@@ -205,6 +213,7 @@ Page({
     }
     wx.showLoading({
       title: '加载中',
+      mask: true
     })
     let page = that.data.page
     wx.request({

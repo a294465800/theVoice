@@ -78,16 +78,21 @@ Page({
   //添加图片
   addImg() {
     const that = this
+    wx.showLoading({
+      title: '加载中',
+      mask: true
+    })
     wx.chooseImage({
       count: 9,
       success: res => {
+        wx.hideLoading()
         saveImgs = []
         saveBaseUrl = []
-        wx.showLoading({
-          title: '加载中',
-        })
         that.uploadImgs(res.tempFilePaths, 0)
       },
+      complete: () => {
+        wx.hideLoading()
+      }
     })
   },
 
@@ -120,7 +125,10 @@ Page({
   //发布
   publish(e) {
     const that = this
-    
+
+    that.setData({
+      'message.formID': e.detail.formId
+    })
     if (!e.detail.value.content) {
       wx.showModal({
         title: '提示',
@@ -128,16 +136,13 @@ Page({
         showCancel: false
       })
     } else {
-      that.setData({
-        'message.formID': e.formId
-      })
       wx.request({
         url: app.globalData.host + 'moment/add',
         method: 'POST',
         data: that.data.message,
         success: res => {
           if (200 == res.data.code) {
-            if(2 == that.data.message.type){
+            if (2 == that.data.message.type) {
               let tmp_data = res.data.data
               tmp_data._token = app.globalData._token
               wx.request({

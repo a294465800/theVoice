@@ -20,7 +20,6 @@ Page({
   //登录
   login() {
     const that = this
-    console.log(1)
     app.getSetting((userInfo) => {
       that.setData({
         userInfo: userInfo

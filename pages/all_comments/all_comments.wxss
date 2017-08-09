@@ -104,6 +104,10 @@
   word-wrap: break-word;
 }
 
+.replay_user {
+  color: #2d84cc;
+}
+
 /*  
   回复当前
 */

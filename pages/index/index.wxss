@@ -118,7 +118,6 @@
 .infos_item_message {
   margin-bottom: 30rpx;
   font-size: 16px;
-  text-indent: 2em;
   padding-left: 30rpx;
   padding-right: 30rpx;
   word-wrap: break-word;
@@ -130,11 +129,6 @@
   -webkit-box-orient: vertical;
   padding-bottom: 20rpx;
 }
-
-/* .infos_item_info {
-  color: #666;
-  font-size: 14px;
-} */
 
 .infos_item_info, .infos_item_info_part {
   display: flex;
