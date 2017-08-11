@@ -6,7 +6,7 @@ App({
   globalData: {
     userInfo: null,
     host: 'https://www.xiashantown.cn/api/v1/',
-    app_id: 'wxfec807d3f372360b',
+    app_id: 'wxdd05e7ae4cf78bea',
     _token: ''
   },
 

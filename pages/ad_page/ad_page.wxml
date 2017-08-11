@@ -1,4 +1,4 @@
 <!--ad_page.wxml-->
 <view class="container">
-  <image src="{{link}}" mode="aspectFill" class="ad"></image>
+  <image src="{{link}}" mode="widthFix" class="ad"></image>
 </view>

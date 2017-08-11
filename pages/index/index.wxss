@@ -127,7 +127,6 @@
   display: -webkit-box;
   -webkit-line-clamp: 5;
   -webkit-box-orient: vertical;
-  padding-bottom: 20rpx;
 }
 
 .infos_item_info, .infos_item_info_part {
