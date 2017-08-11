@@ -2,7 +2,7 @@
 <view class="container">
   <form report-submit bindsubmit="publish">
     <!--输入框  -->
-    <textarea class="publish_area" auto-focus maxlength="200" placeholder="编辑信息..." bindinput="getTextarea" name="content" />
+    <textarea class="publish_area" auto-focus maxlength="500" placeholder="编辑信息..." bindinput="getTextarea" name="content" />
     <!--/输入框  -->
 
     <view class="publish_function">
@@ -12,7 +12,7 @@
         <view class="publish_nobody_titie">匿名发布</view>
       </view>
       <!--/匿名  -->
-      <view class="comment_left">你还可以输入{{comments_left}}/200</view>
+      <view class="comment_left">你还可以输入{{comments_left}}/500</view>
     </view>
 
 

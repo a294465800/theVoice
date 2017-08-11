@@ -10,7 +10,7 @@ Page({
       no: '/images/icon/publish_nobody.png'
     },
 
-    comments_left: 200,
+    comments_left: 500,
 
     //预览图片
     urls: [],
@@ -35,7 +35,7 @@ Page({
   //获取文本
   getTextarea(e) {
     let value = e.detail.value
-    let left = 200 - value.length
+    let left = 500 - value.length
 
     this.setData({
       'message.content': value,

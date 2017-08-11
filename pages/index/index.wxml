@@ -58,7 +58,7 @@
     <!--/ 便民信息-->
 
     <!--发布  -->
-    <image class="infos_publish" mode="aspectFit" src="/images/icon/publish.png" animation="{{animationPublish}}" catchtap="goToPublish"></image>
+    <image class="infos_publish" mode="aspectFit" src="/images/icon/publish.png" catchtap="goToPublish"></image>
     <!--/发布  -->
   </view>
 </block>
