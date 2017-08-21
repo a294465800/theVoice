@@ -6,8 +6,10 @@ App({
   globalData: {
     userInfo: null,
     host: 'https://www.xiashantown.cn/api/v1/',
-    app_id: 'wxdd05e7ae4cf78bea',
-    _token: ''
+    host_v2: 'https://www.xiashantown.cn/api/v2/',
+    app_id: 'wx4f20db7e0bc2d3f6',
+    _token: '',
+    news: []
   },
 
   getToken(cb){

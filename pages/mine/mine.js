@@ -4,7 +4,8 @@ const app = getApp()
 Page({
 
   data: {
-    userInfo: null
+    userInfo: null,
+    news: 0
   },
 
   onLoad(options) {
@@ -15,6 +16,9 @@ Page({
     this.setData({
       userInfo: app.globalData.userInfo
     })
+    if (app.globalData.userInfo) {
+      this.getNewNews()
+    }
   },
 
   //登录
@@ -24,6 +28,25 @@ Page({
       that.setData({
         userInfo: userInfo
       })
+    })
+  },
+
+  //获取消息通知
+  getNewNews() {
+    const that = this
+    wx.request({
+      url: app.globalData.host_v2 + 'my/notify/comments',
+      data: {
+        _token: app.globalData._token
+      },
+      success: res => {
+        if (200 == res.data.code) {
+          that.setData({
+            news: res.data.data.length
+          })
+          app.globalData.news = res.data.data
+        }
+      }
     })
   },
 
@@ -65,6 +88,13 @@ Page({
   goToMyCollect() {
     wx.navigateTo({
       url: '/pages/my_collect/my_collect',
+    })
+  },
+
+  //消息通知
+  goToMyNews() {
+    wx.navigateTo({
+      url: '/pages/my_notice/my_notice',
     })
   },
 

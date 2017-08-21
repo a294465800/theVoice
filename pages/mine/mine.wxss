@@ -52,8 +52,6 @@
 
 .mine_funtion_part_titile {
   flex: 1;
-  font-size: 16px;
-  color: #000;
   padding-left: 20rpx;
 }
 
@@ -69,10 +67,37 @@
 /*
   退出
 */
+
 .logout {
   position: absolute;
   left: 0;
   bottom: 0;
   width: 100%;
   font-size: 16px;
+}
+
+/*  
+  消息提醒
+*/
+
+.alert_part {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.alert_part .alert_text {
+  font-size: 16px;
+  color: #000;
+}
+
+.news_alert {
+  border-radius: 50%;
+  background-color: #ed3f14;
+  color: #fff;
+  font-size: 14px;
+  width: 40rpx;
+  height: 40rpx;
+  text-align: center;
+  line-height: 40rpx;
 }

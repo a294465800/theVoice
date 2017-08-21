@@ -11,7 +11,8 @@
     "pages/promotion/promotion",
     "pages/single_info/single_info",
     "pages/comment/comment",
-    "pages/ad_page/ad_page"
+    "pages/ad_page/ad_page",
+    "pages/my_notice/my_notice"
   ],
   "window": {
     "backgroundTextStyle": "light",

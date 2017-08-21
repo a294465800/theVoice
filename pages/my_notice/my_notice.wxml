@@ -1,0 +1,23 @@
+<!--my_notice.wxml-->
+<view class="container">
+  <block wx:if="{{news.length}}">
+    <view class="collect_item {{new.read == 1? 'read': ''}}" wx:for="{{news}}" wx:for-item="new" wx:key="id" data-real_id="{{new.id}}" data-id="{{new.comment_id}}" catchtap="goToComment" hover-class="push_class" hover-stay-time="150">
+      <view class="collect_item_head">
+        <image src="{{new.auth_avatar}}" mode="aspectFill" class="collect_item_head_img"></image>
+        <view class="collect_item_head_name">{{new.auth}}<text>在文章下回复了你</text></view>
+      </view>
+      <view class="collect_item_topic">{{new.topic}}</view>
+      <view class="collect_item_content">{{new.content}}</view>
+      <view class="collect_item_info">
+        <view class="check_comment" catchtap="goToComment" data-id="{{new.comment_id}}" data-real_id="{{new.id}}">查看对话</view>
+        <view class="check_article" catchtap="goToArticle" data-id="{{new.moment_id}}">查看文章</view>
+      </view>
+    </view>
+    <block wx:if="{{close}}">
+      <view class="tips">没有更多内容了</view>
+    </block>
+  </block>
+  <block wx:else>
+    <view class="tips">暂无新消息</view>
+  </block>
+</view>
