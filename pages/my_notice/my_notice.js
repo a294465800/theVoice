@@ -10,8 +10,11 @@ Page({
   },
 
   onLoad(options) {
-    this.setData({
-      news: app.globalData.news
+    const that = this
+    this.firstRequest(1, data => {
+      that.setData({
+        news: data
+      })
     })
   },
 

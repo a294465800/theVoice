@@ -35,16 +35,15 @@ Page({
   getNewNews() {
     const that = this
     wx.request({
-      url: app.globalData.host_v2 + 'my/notify/comments',
+      url: app.globalData.host_v2 + 'notify/Unread/count',
       data: {
         _token: app.globalData._token
       },
       success: res => {
         if (200 == res.data.code) {
           that.setData({
-            news: res.data.data.length
+            news: res.data.data
           })
-          app.globalData.news = res.data.data
         }
       }
     })
