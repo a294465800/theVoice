@@ -88,7 +88,6 @@ Page({
     let flag = that.data.flag
     let close = that.data.close
 
-    console.log(flag, close)
     //阻止重复触发和主动关闭
     if (flag || close) {
       return false

@@ -36,7 +36,7 @@
       <view class="mine_funtion_part_titile alert_part">
         <view class="alert_text">消息通知</view>
         <block wx:if="{{news}}">
-          <view class="news_alert">{{news}}</view>
+          <view class="news_alert">{{news > 99? 99 : news}}</view>
         </block>
         <block wx:else>
         </block>

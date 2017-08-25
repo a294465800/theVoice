@@ -25,6 +25,11 @@
               </block>
             </view>
             <text class="infos_item_message">{{info.content}}</text>
+            <block wx:if="{{info.videos.length}}">
+              <view class="infos_item_video" catchtap="stopTouch">
+                <video src="{{video.url}}" wx:for="{{info.videos}}" wx:key="id" wx:for-item="video"></video>
+              </view>
+            </block>
             <block wx:if="{{info.images.length}}">
               <view class="infos_item_pic_list">
                 <image src="{{item.url}}" mode="aspectFill" class="infos_item_pic" wx:for="{{info.images}}" wx:key="id" catchtap="preImage" data-index="{{index}}" data-url="{{item.url}}"></image>

@@ -170,5 +170,22 @@
   position: fixed;
   right: 50rpx;
   bottom: 50rpx;
-  z-index: 1;
+  z-index: 2;
+}
+
+/*  
+  视频
+*/
+
+.infos_item_video {
+  padding: 0 30rpx;
+  margin-bottom: 20rpx;
+  position: relative;
+  width: 100%;
+  min-height: 225px; 
+}
+
+.infos_item_video video {
+  width: 100%;
+  height: 225px;
 }

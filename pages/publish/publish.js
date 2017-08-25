@@ -14,6 +14,7 @@ Page({
 
     //预览图片
     urls: [],
+    video: '',
 
     //待发送信息
     message: {
@@ -21,7 +22,8 @@ Page({
       anonymous: 0,
       images: [],
       type: 1,
-      _token: app.globalData._token
+      _token: app.globalData._token,
+      movies: []
     },
   },
 
@@ -120,6 +122,50 @@ Page({
         'message.anonymous': 1
       })
     }
+  },
+
+  //选择视频
+  chooseVideo() {
+    const that = this
+    wx.chooseVideo({
+      sourceType: ['album', 'camera'],
+      maxDuration: 10,
+      success: res => {
+        if (res.size > 4194304) {
+          wx.showModal({
+            title: '提示',
+            content: '请选择小于4M的视频',
+            showCancel: false
+          })
+        } else {
+          wx.showLoading({
+            title: '获取中',
+            mask: true
+          })
+          wx.uploadFile({
+            url: app.globalData.host + 'upload',
+            filePath: res.tempFilePath,
+            name: 'image',
+            success: rs => {
+              let data = JSON.parse(rs.data)
+              if (200 == rs.statusCode) {
+                that.setData({
+                  'message.movies': [data.baseurl],
+                  video: [res.tempFilePath]
+                })
+              }else {
+                wx.showModal({
+                  title: '提示',
+                  content: '上传出错',
+                  showCancel: false
+                })
+              }
+              wx.hideLoading()
+            }
+          })
+        }
+      }
+    })
   },
 
   //发布

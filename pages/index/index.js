@@ -264,5 +264,10 @@ Page({
   onPullDownRefresh() {
     this.firstRequest()
     wx.stopPullDownRefresh()
-  }
+  },
+
+  //用于视频
+  stopTouch(){
+    return false
+  },
 })

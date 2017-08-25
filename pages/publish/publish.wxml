@@ -17,19 +17,43 @@
 
 
     <!--图片部分  -->
-    <view class="publish_imgs">
-      <block wx:if="{{urls.length}}">
-        <image src="{{item}}" wx:for="{{urls}}" wx:key="*this" mode="aspectFill" class="publish_img">
+    <block wx:if="{{urls.length}}">
+      <view class="publish_imgs">
+        <image src="{{item}}" wx:for="{{urls}}" wx:key="*this" mode="aspectFill" class="publish_img_choose">
           <icon type="clear" color="#1ccca9" class="img_cancel" size="20" catchtap="cancelImg" data-url="{{item}}" />
         </image>
-      </block>
-      <block wx:if="{{urls.length < 9}}">
+      </view>
+    </block>
+    <!-- <block wx:if="{{urls.length < 9}}">
         <image src="/images/icon/add_img.png" mode="aspectFill" class="publish_img" catchtap="addImg"></image>
-      </block>
-      <block wx:else>
-      </block>
-    </view>
+      </block> -->
+    <block wx:else>
+    </block>
     <!--/图片部分  -->
+
+    <!--拍小视频  -->
+    <block wx:if="video.length">
+      <view class="publish_video_part">
+        <video src="{{item}}" wx:for="{{video}}"></video>
+      </view>
+    </block>
+    <block wx:else>
+    </block>
+    <!-- <view class="publish_video_part"> -->
+      <!-- <view class="publish_video" catchtap="chooseVideo">
+        <image src="/images/icon/camera.png" mode="aspectFit"></image>
+        <view>拍摄</view>
+      </view> -->
+      <!-- <video src="{{video}}" hidden="{{!video}}"></video>
+    </view> -->
+    <!--/拍小视频  -->
+
+    <!--功能选择  -->
+    <view class="publish_function_part">
+      <image src="/images/icon/photo.png" mode="aspectFit" class="publish_img" catchtap="addImg"></image>
+      <image src="/images/icon/video.png" mode="aspectFit" class="publish_img" catchtap="chooseVideo"></image>
+    </view>
+    <!--/功能选择  -->
 
     <!--提醒  -->
     <view class="publish_warning">
@@ -39,7 +63,8 @@
       </view>
       <view class="publish_warning_content">
         <text>1.个人版免费发布，商家促销信息每条10元。
-      2.审核成功后将予以显示，请耐心等待。</text>
+      2.审核成功后将予以显示，请耐心等待。
+      3.上传的视频必须小于4MB。</text>
       </view>
     </view>
     <!--/提醒  -->
